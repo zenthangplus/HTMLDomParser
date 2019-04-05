@@ -1,0 +1,15 @@
+{
+    "name": "zenthangplus/port-simplehtmldom",
+    "type": "library",
+    "authors": [
+        {
+            "name": "zenthangplus",
+            "email": "zenthangplus@gmail.com"
+        }
+    ],
+    "autoload": {
+        "files": ["src/Sources/simple_html_dom.php"],
+        "psr-4": {"SimpleHtmlDom\\": "src/"}
+    },
+    "require": {}
+}
