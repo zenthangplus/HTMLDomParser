@@ -70,6 +70,45 @@ interface NodeContract
     public function getChildren();
 
     /**
+     * Get the first child
+     *
+     * @return NodeContract|null
+     */
+    public function getFirstChild();
+
+    /**
+     * Get the last child
+     *
+     * @return NodeContract|null
+     */
+    public function getLastChild();
+
+    /**
+     * Get the next sibling node
+     *
+     * @return NodeContract|null
+     */
+    public function getNextSibling();
+
+    /**
+     * Get previous sibling node
+     *
+     * @return NodeContract|null
+     */
+    public function getPrevSibling();
+
+    /**
+     * Traverse ancestors to the first matching tag.
+     *
+     * @param $tag
+     * @return NodeContract|null
+     */
+    public function findAncestorTag($tag);
+
+    /**
+     * Find elements by CSS selector
+     *
+     * @see \simple_html_dom_node::find()
      * @param string $selector
      * @param bool $lowercase
      * @return NodeContract[]
@@ -77,25 +116,134 @@ interface NodeContract
     public function find($selector, $lowercase = false);
 
     /**
+     * Find a element by CSS selector,
+     * if current node contains multiple elements with same selector, return the first one
+     *
+     * @see \simple_html_dom_node::find()
      * @param string $selector
      * @param bool $lowercase
-     * @return NodeContract
+     * @return NodeContract|null
      */
     public function findOne($selector, $lowercase = false);
 
     /**
+     * Get element by it's ID
+     *
+     * @see \simple_html_dom_node::getElementById()
+     * @param string $id
+     * @return NodeContract|null
+     */
+    public function getElementById($id);
+
+    /**
+     * Get a element by tag name,
+     * if current node has multiple tags with same name, return the first one
+     *
+     * @see \simple_html_dom_node::getElementByTagName()
+     * @param string $tag
+     * @return NodeContract|null
+     */
+    public function getElementByTagName($tag);
+
+    /**
+     * Get all elements by tag name
+     *
+     * @see \simple_html_dom_node::getElementsByTagName()
+     * @param string $tag
+     * @return \SimpleHtmlDom\Collectors\NodesCollector
+     */
+    public function getElementsByTagName($tag);
+
+    /**
+     * Get node's inner text (everything inside the opening and closing tags)
+     *
+     * @see \simple_html_dom_node::innertext()
+     * @return string
+     */
+    public function innerHtml();
+
+    /**
+     * Get node's xml text (inner text as a CDATA section)
+     *
+     * @see \simple_html_dom_node::xmltext()
+     * @return string
+     */
+    public function innerXml();
+
+    /**
+     * Get node's outer text (everything including the opening and closing tags)
+     *
+     * @see \simple_html_dom_node::outertext()
+     * @return string
+     */
+    public function outerHtml();
+
+    /**
+     * Get node's plain text (everything excluding all tags)
+     *
+     * @see \simple_html_dom_node::text()
      * @return string
      */
     public function text();
 
     /**
+     * Get a attribute by name
+     *
+     * @see \simple_html_dom_node::getAttribute()
+     * @param string $name
+     * @return string
+     */
+    public function getAttribute($name);
+
+    /**
      * Set attribute for current node
      *
-     * @param $name
+     * @see \simple_html_dom_node::setAttribute()
+     * @param string $name
      * @param $value
-     * @return mixed
      */
     public function setAttribute($name, $value);
+
+    /**
+     * Get all attributes for current node
+     *
+     * @see \simple_html_dom_node::getAllAttributes()
+     * @return array
+     */
+    public function getAttributes();
+
+    /**
+     * Check an attribute exists in current node
+     *
+     * @see \simple_html_dom_node::hasAttribute()
+     * @param string $name
+     * @return bool
+     */
+    public function hasAttribute($name);
+
+    /**
+     * Remove an attribute from current node
+     *
+     * @see \simple_html_dom_node::removeAttribute()
+     * @param string $name
+     */
+    public function removeAttribute($name);
+
+    /**
+     * Append a node to current node
+     *
+     * @see \simple_html_dom_node::appendChild()
+     * @param NodeContract $node
+     */
+    public function appendChild($node);
+
+    /**
+     * Build node's text with tag
+     *
+     * @see \simple_html_dom_node::makeup()
+     * @return string
+     */
+    public function makeup();
 
     /**
      * Get raw node from simple_html_dom
@@ -103,4 +251,11 @@ interface NodeContract
      * @return \simple_html_dom_node
      */
     public function getRaw();
+
+    /**
+     * Get the node's name
+     *
+     * @return string
+     */
+    public function getName();
 }
