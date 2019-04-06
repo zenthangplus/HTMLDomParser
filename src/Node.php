@@ -5,6 +5,10 @@ namespace SimpleHtmlDom;
 use \simple_html_dom_node;
 use SimpleHtmlDom\Collectors\NodesCollector;
 use SimpleHtmlDom\Contracts\NodeContract;
+use SimpleHtmlDom\Contracts\NodesCollectorContract;
+use SimpleHtmlDom\Traits\NodeCreators;
+use SimpleHtmlDom\Traits\NodeLoaders;
+use SimpleHtmlDom\Traits\NodeProducers;
 
 /**
  * Class Node
@@ -12,57 +16,43 @@ use SimpleHtmlDom\Contracts\NodeContract;
  */
 class Node implements NodeContract
 {
+    use NodeCreators, NodeLoaders, NodeProducers;
+
     /**
-     * Store document's node
+     * Simple dom node object
      *
      * @var simple_html_dom_node
      */
     protected $node;
 
     /**
-     * HtmlDomNode constructor.
+     * Load node from simple_html_dom_node
+     *
      * @param simple_html_dom_node $node
      */
-    public function __construct($node)
+    public function loadSimpleNode($node)
     {
         $this->node = $node;
     }
 
     /**
-     * HtmlDomNode destructor
+     * Get raw node from simple_html_dom
+     *
+     * @return simple_html_dom_node
      */
-    function __destruct()
+    public function getSimpleNode()
     {
-        $this->clear();
+        return $this->node;
     }
 
     /**
-     * Convert current node to string
+     * Get the node's name
      *
      * @return string
      */
-    public function __toString()
+    public function getName()
     {
-        return $this->node->outertext();
-    }
-
-    /**
-     * Clean up memory due to php5 circular references memory leak...
-     */
-    public function clear()
-    {
-        $this->node->clear();
-    }
-
-    /**
-     * Dump node's tree
-     *
-     * @param bool $showAttr
-     * @param int $deep
-     */
-    public function dump($showAttr = true, $deep = 0)
-    {
-        $this->node->dump($showAttr, $deep);
+        return $this->node->nodeName();
     }
 
     /**
@@ -82,7 +72,7 @@ class Node implements NodeContract
      */
     public function setParent($parent)
     {
-        $this->node->parent($parent->getRaw());
+        $this->node->parent($parent->getSimpleNode());
     }
 
     /**
@@ -112,7 +102,7 @@ class Node implements NodeContract
     /**
      * Get all child nodes
      *
-     * @return NodesCollector
+     * @return NodesCollectorContract
      */
     public function getChildren()
     {
@@ -175,7 +165,7 @@ class Node implements NodeContract
      *
      * @param string $selector
      * @param bool $lowercase
-     * @return NodesCollector
+     * @return NodesCollectorContract
      */
     public function find($selector, $lowercase = false)
     {
@@ -222,7 +212,7 @@ class Node implements NodeContract
      * Get all elements by a tag name
      *
      * @param string $tag
-     * @return NodesCollector
+     * @return NodesCollectorContract
      */
     public function getElementsByTagName($tag)
     {
@@ -343,23 +333,40 @@ class Node implements NodeContract
     }
 
     /**
-     * Get raw node from simple_html_dom
+     * Dump node's tree
      *
-     * @return simple_html_dom_node
+     * @param bool $showAttr
+     * @param int $deep
      */
-    public function getRaw()
+    public function dump($showAttr = true, $deep = 0)
     {
-        return $this->node;
+        $this->node->dump($showAttr, $deep);
     }
 
     /**
-     * Get the node's name
+     * Clean up memory due to php5 circular references memory leak...
+     */
+    public function clear()
+    {
+        $this->node->clear();
+    }
+
+    /**
+     * Convert current node to string
      *
      * @return string
      */
-    public function getName()
+    public function __toString()
     {
-        return $this->node->nodeName();
+        return $this->outerHtml();
+    }
+
+    /**
+     * HtmlDomNode destructor
+     */
+    function __destruct()
+    {
+        $this->clear();
     }
 
     /**
@@ -367,13 +374,13 @@ class Node implements NodeContract
      * else return new Node
      *
      * @param $element
-     * @return Node|null
+     * @return NodeContract|null
      */
     private function nullOrNode($element)
     {
         if (is_null($element)) {
             return null;
         }
-        return new Node($element);
+        return Node::createFromSimpleDom($element);
     }
 }

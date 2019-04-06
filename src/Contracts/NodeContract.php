@@ -9,29 +9,47 @@ namespace SimpleHtmlDom\Contracts;
 interface NodeContract
 {
     /**
-     * Destructor function
+     * Load node from string
+     *
+     * @param string $html
      */
-    public function __destruct();
+    public function loadString($html);
 
     /**
-     * Convert current node to string
+     * Load node from file
+     *
+     * @param string $htmlFile
+     */
+    public function loadFile($htmlFile);
+
+    /**
+     * Load node from simple_html_dom_node
+     *
+     * @param \simple_html_dom_node $node
+     */
+    public function loadSimpleNode($node);
+
+    /**
+     * Save current DOM to file and get html
+     *
+     * @param string $filePath
+     * @return string
+     */
+    public function save($filePath = '');
+
+    /**
+     * Get raw node from simple_html_dom
+     *
+     * @return \simple_html_dom_node
+     */
+    public function getSimpleNode();
+
+    /**
+     * Get the node's name
      *
      * @return string
      */
-    public function __toString();
-
-    /**
-     * Clean up memory due to php5 circular references memory leak
-     */
-    public function clear();
-
-    /**
-     * Dump node's tree
-     *
-     * @param bool $showAttr
-     * @param int $deep
-     */
-    public function dump($showAttr = true, $deep = 0);
+    public function getName();
 
     /**
      * Get the parent node
@@ -65,7 +83,7 @@ interface NodeContract
     /**
      * Get all child nodes
      *
-     * @return NodeContract[]
+     * @return NodesCollectorContract
      */
     public function getChildren();
 
@@ -111,7 +129,7 @@ interface NodeContract
      * @see \simple_html_dom_node::find()
      * @param string $selector
      * @param bool $lowercase
-     * @return NodeContract[]
+     * @return NodesCollectorContract
      */
     public function find($selector, $lowercase = false);
 
@@ -150,7 +168,7 @@ interface NodeContract
      *
      * @see \simple_html_dom_node::getElementsByTagName()
      * @param string $tag
-     * @return \SimpleHtmlDom\Collectors\NodesCollector
+     * @return NodesCollectorContract
      */
     public function getElementsByTagName($tag);
 
@@ -246,16 +264,27 @@ interface NodeContract
     public function makeup();
 
     /**
-     * Get raw node from simple_html_dom
+     * Dump node's tree
      *
-     * @return \simple_html_dom_node
+     * @param bool $showAttr
+     * @param int $deep
      */
-    public function getRaw();
+    public function dump($showAttr = true, $deep = 0);
 
     /**
-     * Get the node's name
+     * Clean up memory due to php5 circular references memory leak
+     */
+    public function clear();
+
+    /**
+     * Convert current node to string
      *
      * @return string
      */
-    public function getName();
+    public function __toString();
+
+    /**
+     * Destructor function
+     */
+    public function __destruct();
 }
