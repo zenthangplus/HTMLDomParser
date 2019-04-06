@@ -2,8 +2,8 @@
 
 namespace SimpleHtmlDom\Collectors;
 
-use SimpleHtmlDom\Sources\simple_html_dom_node;
 use SimpleHtmlDom\Node;
+use SimpleHtmlDom\Sources\simple_html_dom_node;
 use SimpleHtmlDom\Contracts\NodesCollectorContract;
 
 /**
