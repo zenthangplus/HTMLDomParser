@@ -2,53 +2,54 @@
 
 namespace SimpleHtmlDom\Traits;
 
-use SimpleHtmlDom\Contracts\NodeContract;
+use SimpleHtmlDom\Contracts\DomContract;
+use SimpleHtmlDom\Dom;
 use SimpleHtmlDom\Node;
 
 /**
- * Trait NodeCreators
+ * Trait DomCreators
  * @package SimpleHtmlDom\Traits
  */
-trait NodeCreators
+trait DomCreators
 {
     /**
-     * Create new node from html string
+     * Create new DOM from html string
      *
      * @see Node::loadString()
      * @param string $html
-     * @return NodeContract
+     * @return DomContract
      */
     public static function create($html)
     {
-        $node = new Node;
+        $node = new Dom;
         $node->loadString($html);
         return $node;
     }
 
     /**
-     * Create new node from html file
+     * Create new DOM from html file
      *
      * @param string $htmlFile
-     * @return NodeContract
+     * @return DomContract
      */
     public static function createFromFile($htmlFile)
     {
-        $node = new Node;
+        $node = new Dom;
         $node->loadFile($htmlFile);
         return $node;
     }
 
     /**
-     * Create new node from simple_html_dom_node
+     * Create new DOM from simple_html_dom
      *
      * @see Node::loadSimpleDom()
-     * @param \SimpleHtmlDom\Sources\simple_html_dom_node $simpleNode
-     * @return NodeContract
+     * @param \SimpleHtmlDom\Sources\simple_html_dom $simpleDom
+     * @return DomContract
      */
-    public static function createFromSimpleDom($simpleNode)
+    public static function createFromSimpleDom($simpleDom)
     {
-        $node = new Node;
-        $node->loadSimpleNode($simpleNode);
+        $node = new Dom;
+        $node->loadSimpleDom($simpleDom);
         return $node;
     }
 }
