@@ -13,7 +13,7 @@ trait NodeLoaders
     /**
      * Load node from simple_html_dom_node
      *
-     * @param \SimpleHtmlDom\Sources\simple_html_dom_node $node
+     * @param object $node \SimpleHtmlDom\Sources\simple_html_dom_node
      */
     abstract public function loadSimpleNode($node);
 
