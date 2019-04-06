@@ -2,7 +2,7 @@
 
 namespace SimpleHtmlDom\Collectors;
 
-use \simple_html_dom_node;
+use SimpleHtmlDom\Sources\simple_html_dom_node;
 use SimpleHtmlDom\Node;
 use SimpleHtmlDom\Contracts\NodesCollectorContract;
 

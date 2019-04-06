@@ -42,7 +42,7 @@ trait NodeCreators
      * Create new node from simple_html_dom_node
      *
      * @see Node::loadSimpleDom()
-     * @param \simple_html_dom_node $simpleNode
+     * @param \SimpleHtmlDom\Sources\simple_html_dom_node $simpleNode
      * @return NodeContract
      */
     public static function createFromSimpleDom($simpleNode)

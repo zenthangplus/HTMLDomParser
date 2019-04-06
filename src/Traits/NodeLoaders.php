@@ -2,6 +2,8 @@
 
 namespace SimpleHtmlDom\Traits;
 
+use SimpleHtmlDom\Sources\simple_html_dom;
+
 /**
  * Trait NodeLoaders
  * @package SimpleHtmlDom\Traits
@@ -11,7 +13,7 @@ trait NodeLoaders
     /**
      * Load node from simple_html_dom_node
      *
-     * @param \simple_html_dom_node $node
+     * @param \SimpleHtmlDom\Sources\simple_html_dom_node $node
      */
     abstract public function loadSimpleNode($node);
 
@@ -22,7 +24,7 @@ trait NodeLoaders
      */
     public function loadString($html)
     {
-        $dom = new \simple_html_dom();
+        $dom = new simple_html_dom();
         $dom->load($html);
         $this->loadSimpleNode($dom->root);
     }
@@ -34,7 +36,7 @@ trait NodeLoaders
      */
     public function loadFile($htmlFile)
     {
-        $dom = new \simple_html_dom();
+        $dom = new simple_html_dom();
         $dom->load_file($htmlFile);
         $this->loadSimpleNode($dom->root);
     }
