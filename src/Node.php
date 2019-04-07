@@ -319,7 +319,7 @@ class Node implements NodeContract
      */
     public function appendChild($node)
     {
-        $this->node->appendChild($node);
+        $this->node->appendChild($node->getSimpleNode());
     }
 
     /**
