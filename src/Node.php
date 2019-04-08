@@ -381,6 +381,8 @@ class Node implements NodeContract
         if (is_null($element)) {
             return null;
         }
-        return Node::createFromSimpleDom($element);
+        $node = new Node();
+        $node->loadSimpleNode($element);
+        return $node;
     }
 }

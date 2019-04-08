@@ -45,10 +45,11 @@ trait NodeCreators
      * @param \SimpleHtmlDom\Sources\simple_html_dom_node $simpleNode
      * @return NodeContract
      */
-    public static function createFromSimpleDom($simpleNode)
+    public static function createFromSimpleNode($simpleNode)
     {
+        $newSimpleNode = clone $simpleNode;
         $node = new Node;
-        $node->loadSimpleNode($simpleNode);
+        $node->loadSimpleNode($newSimpleNode);
         return $node;
     }
 }

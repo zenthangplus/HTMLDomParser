@@ -48,8 +48,9 @@ trait DomCreators
      */
     public static function createFromSimpleDom($simpleDom)
     {
+        $newSimpleDom = clone $simpleDom;
         $node = new Dom;
-        $node->loadSimpleDom($simpleDom);
+        $node->loadSimpleDom($newSimpleDom);
         return $node;
     }
 }
