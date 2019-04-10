@@ -21,7 +21,7 @@ trait NodeCreators
     public static function create($html)
     {
         $node = new Node;
-        $node->loadString($html);
+        $node->load($html);
         return $node;
     }
 
@@ -35,21 +35,6 @@ trait NodeCreators
     {
         $node = new Node;
         $node->loadFile($htmlFile);
-        return $node;
-    }
-
-    /**
-     * Create new node from simple_html_dom_node
-     *
-     * @see Node::loadSimpleDom()
-     * @param \SimpleHtmlDom\Sources\simple_html_dom_node $simpleNode
-     * @return NodeContract
-     */
-    public static function createFromSimpleNode($simpleNode)
-    {
-        $newSimpleNode = clone $simpleNode;
-        $node = new Node;
-        $node->loadSimpleNode($newSimpleNode);
         return $node;
     }
 }

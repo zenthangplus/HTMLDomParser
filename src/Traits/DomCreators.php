@@ -22,7 +22,7 @@ trait DomCreators
     public static function create($html)
     {
         $node = new Dom;
-        $node->loadString($html);
+        $node->load($html);
         return $node;
     }
 
@@ -36,21 +36,6 @@ trait DomCreators
     {
         $node = new Dom;
         $node->loadFile($htmlFile);
-        return $node;
-    }
-
-    /**
-     * Create new DOM from simple_html_dom
-     *
-     * @see Node::loadSimpleDom()
-     * @param \SimpleHtmlDom\Sources\simple_html_dom $simpleDom
-     * @return DomContract
-     */
-    public static function createFromSimpleDom($simpleDom)
-    {
-        $newSimpleDom = clone $simpleDom;
-        $node = new Dom;
-        $node->loadSimpleDom($newSimpleDom);
         return $node;
     }
 }

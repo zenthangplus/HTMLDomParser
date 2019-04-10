@@ -9,27 +9,6 @@ namespace SimpleHtmlDom\Contracts;
 interface NodeContract
 {
     /**
-     * Load node from string
-     *
-     * @param string $html
-     */
-    public function loadString($html);
-
-    /**
-     * Load node from file
-     *
-     * @param string $htmlFile
-     */
-    public function loadFile($htmlFile);
-
-    /**
-     * Load node from simple_html_dom_node
-     *
-     * @param \SimpleHtmlDom\Sources\simple_html_dom_node $node
-     */
-    public function loadSimpleNode($node);
-
-    /**
      * Save current DOM to file and get html
      *
      * @see \SimpleHtmlDom\Sources\simple_html_dom::save()

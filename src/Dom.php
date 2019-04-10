@@ -21,16 +21,17 @@ class Dom extends Node implements DomContract
      *
      * @var simple_html_dom
      */
-    private $dom;
+    protected $dom;
 
     /**
      * Load DOM from simple_html_dom
      *
      * @param simple_html_dom $dom
      */
-    public function loadSimpleDom($dom)
+    protected function loadSimpleDom($dom)
     {
         $this->dom = $dom;
+        $this->loadSimpleNode($dom->root);
     }
 
     /**
