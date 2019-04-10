@@ -61,9 +61,7 @@ class NodesCollector implements NodesCollectorContract
     {
         // Ensure current node already transformed
         if (!isset($this->nodes[$this->currentIndex]) && isset($this->rawNodes[$this->currentIndex])) {
-            $node = new Node;
-            $node->loadObject($this->rawNodes[$this->currentIndex]);
-            $this->nodes[$this->currentIndex] = $node;
+            $this->nodes[$this->currentIndex] = new Node($this->rawNodes[$this->currentIndex]);
         }
         return $this->nodes[$this->currentIndex];
     }

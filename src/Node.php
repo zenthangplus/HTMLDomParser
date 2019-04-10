@@ -2,12 +2,12 @@
 
 namespace SimpleHtmlDom;
 
+use SimpleHtmlDom\Sources\simple_html_dom;
 use SimpleHtmlDom\Sources\simple_html_dom_node;
 use SimpleHtmlDom\Collectors\NodesCollector;
 use SimpleHtmlDom\Contracts\NodeContract;
 use SimpleHtmlDom\Contracts\NodesCollectorContract;
 use SimpleHtmlDom\Traits\NodeCreators;
-use SimpleHtmlDom\Traits\NodeLoaders;
 use SimpleHtmlDom\Traits\NodeProducers;
 
 /**
@@ -16,7 +16,7 @@ use SimpleHtmlDom\Traits\NodeProducers;
  */
 class Node implements NodeContract
 {
-    use NodeCreators, NodeLoaders, NodeProducers;
+    use NodeCreators, NodeProducers;
 
     /**
      * Simple dom node object
@@ -26,13 +26,62 @@ class Node implements NodeContract
     protected $node;
 
     /**
+     * Node constructor.
+     * @param string|object|null $html
+     */
+    public function __construct($html = null)
+    {
+        if ($html) {
+            if (is_string($html)) {
+                $this->load($html);
+                return;
+            }
+            $this->loadObject($html);
+        }
+    }
+
+    /**
+     * Load node from string
+     *
+     * @param string $html
+     */
+    public function load($html)
+    {
+        $dom = $this->newSimpleDom();
+        $dom->load($html);
+        $this->loadObject($dom->root);
+    }
+
+    /**
+     * Load node from file
+     *
+     * @param string $htmlFile
+     */
+    public function loadFile($htmlFile)
+    {
+        $dom = $this->newSimpleDom();
+        $dom->load_file($htmlFile);
+        $this->loadObject($dom->root);
+    }
+
+    /**
      * Load node from simple_html_dom_node object
      *
      * @param simple_html_dom_node|object $node
      */
-    public function loadObject($node)
+    protected function loadObject($node)
     {
         $this->node = $node;
+    }
+
+    /**
+     * Create new simple_html_dom instance
+     *
+     * @return simple_html_dom
+     */
+    protected function newSimpleDom()
+    {
+        return new simple_html_dom();
     }
 
     /**
@@ -365,8 +414,6 @@ class Node implements NodeContract
         if (is_null($element)) {
             return null;
         }
-        $node = new Node();
-        $node->loadObject($element);
-        return $node;
+        return new Node($element);
     }
 }

@@ -6,7 +6,6 @@ use SimpleHtmlDom\Contracts\DomContract;
 use SimpleHtmlDom\Sources\simple_html_dom;
 use SimpleHtmlDom\Sources\simple_html_dom_node;
 use SimpleHtmlDom\Traits\DomCreators;
-use SimpleHtmlDom\Traits\DomLoaders;
 
 /**
  * Class Dom
@@ -14,7 +13,7 @@ use SimpleHtmlDom\Traits\DomLoaders;
  */
 class Dom extends Node implements DomContract
 {
-    use DomLoaders, DomCreators;
+    use DomCreators;
 
     /**
      * Simple DOM object
@@ -24,11 +23,51 @@ class Dom extends Node implements DomContract
     protected $dom;
 
     /**
+     * Dom constructor.
+     * @param null|string|object $html
+     */
+    public function __construct($html = null)
+    {
+        if ($html) {
+            if (is_string($html)) {
+                $this->load($html);
+            } else {
+                $this->loadObject($html);
+            }
+        }
+        parent::__construct(null);
+    }
+
+    /**
+     * Load DOM from string
+     *
+     * @param string $html
+     */
+    public function load($html)
+    {
+        $dom = $this->newSimpleDom();
+        $dom->load($html);
+        $this->loadObject($dom);
+    }
+
+    /**
+     * Load DOM from file
+     *
+     * @param string $htmlFile
+     */
+    public function loadFile($htmlFile)
+    {
+        $dom = $this->newSimpleDom();
+        $dom->load_file($htmlFile);
+        $this->loadObject($dom);
+    }
+
+    /**
      * Load DOM from simple_html_dom
      *
-     * @param simple_html_dom $dom
+     * @param simple_html_dom|object $dom
      */
-    public function loadObject($dom)
+    protected function loadObject($dom)
     {
         $this->dom = $dom;
         parent::loadObject($dom->root);
