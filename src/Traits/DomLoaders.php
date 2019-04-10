@@ -19,7 +19,7 @@ trait DomLoaders
     {
         $dom = new simple_html_dom();
         $dom->load($html);
-        $this->loadSimpleDom($dom);
+        $this->loadObject($dom);
     }
 
     /**
@@ -31,7 +31,7 @@ trait DomLoaders
     {
         $dom = new simple_html_dom();
         $dom->load_file($htmlFile);
-        $this->loadSimpleDom($dom);
+        $this->loadObject($dom);
     }
 
     /**
@@ -39,5 +39,5 @@ trait DomLoaders
      *
      * @param simple_html_dom $dom
      */
-    abstract protected function loadSimpleDom($dom);
+    abstract public function loadObject($dom);
 }

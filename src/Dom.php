@@ -28,10 +28,10 @@ class Dom extends Node implements DomContract
      *
      * @param simple_html_dom $dom
      */
-    protected function loadSimpleDom($dom)
+    public function loadObject($dom)
     {
         $this->dom = $dom;
-        $this->loadSimpleNode($dom->root);
+        parent::loadObject($dom->root);
     }
 
     /**
@@ -45,7 +45,7 @@ class Dom extends Node implements DomContract
         $this->dom->set_callback(function ($element) use ($callback) {
             /** @var simple_html_dom_node $element */
             $node = new Node;
-            $node->loadSimpleNode($element);
+            $node->loadObject($element);
             $callback($node);
         });
     }

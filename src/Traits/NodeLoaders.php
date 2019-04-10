@@ -19,7 +19,7 @@ trait NodeLoaders
     {
         $dom = new simple_html_dom();
         $dom->load($html);
-        $this->loadSimpleNode($dom->root);
+        $this->loadObject($dom->root);
     }
 
     /**
@@ -31,7 +31,7 @@ trait NodeLoaders
     {
         $dom = new simple_html_dom();
         $dom->load_file($htmlFile);
-        $this->loadSimpleNode($dom->root);
+        $this->loadObject($dom->root);
     }
 
     /**
@@ -39,5 +39,5 @@ trait NodeLoaders
      *
      * @param object $node \SimpleHtmlDom\Sources\simple_html_dom_node
      */
-    abstract public function loadSimpleNode($node);
+    abstract public function loadObject($node);
 }

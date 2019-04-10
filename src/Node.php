@@ -26,11 +26,11 @@ class Node implements NodeContract
     protected $node;
 
     /**
-     * Load node from simple_html_dom_node
+     * Load node from simple_html_dom_node object
      *
-     * @param simple_html_dom_node $node
+     * @param simple_html_dom_node|object $node
      */
-    public function loadSimpleNode($node)
+    public function loadObject($node)
     {
         $this->node = $node;
     }
@@ -366,7 +366,7 @@ class Node implements NodeContract
             return null;
         }
         $node = new Node();
-        $node->loadSimpleNode($element);
+        $node->loadObject($element);
         return $node;
     }
 }
