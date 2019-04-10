@@ -285,21 +285,9 @@ interface NodeContract
     public function dump($showAttr = true, $deep = 0);
 
     /**
-     * Clean up memory due to php5 circular references memory leak
-     *
-     * @see \SimpleHtmlDom\Sources\simple_html_dom_node::clear()
-     */
-    public function clear();
-
-    /**
      * Convert current node to string
      *
      * @return string
      */
     public function __toString();
-
-    /**
-     * Destructor function
-     */
-    public function __destruct();
 }

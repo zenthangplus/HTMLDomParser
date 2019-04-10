@@ -4,6 +4,7 @@ namespace SimpleHtmlDom;
 
 use SimpleHtmlDom\Contracts\DomContract;
 use SimpleHtmlDom\Sources\simple_html_dom;
+use SimpleHtmlDom\Sources\simple_html_dom_node;
 use SimpleHtmlDom\Traits\DomCreators;
 use SimpleHtmlDom\Traits\DomLoaders;
 
@@ -40,7 +41,12 @@ class Dom extends Node implements DomContract
      */
     public function setCallback($callback)
     {
-        $this->dom->set_callback($callback);
+        $this->dom->set_callback(function ($element) use ($callback) {
+            /** @var simple_html_dom_node $element */
+            $node = new Node;
+            $node->loadSimpleNode($element);
+            $callback($node);
+        });
     }
 
     /**

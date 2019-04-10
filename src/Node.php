@@ -344,14 +344,6 @@ class Node implements NodeContract
     }
 
     /**
-     * Clean up memory due to php5 circular references memory leak...
-     */
-    public function clear()
-    {
-        $this->node->clear();
-    }
-
-    /**
      * Convert current node to string
      *
      * @return string
@@ -359,14 +351,6 @@ class Node implements NodeContract
     public function __toString()
     {
         return $this->outerHtml();
-    }
-
-    /**
-     * HtmlDomNode destructor
-     */
-    function __destruct()
-    {
-        $this->clear();
     }
 
     /**
