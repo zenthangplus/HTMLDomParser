@@ -8,7 +8,6 @@ use SimpleHtmlDom\Collectors\NodesCollector;
 use SimpleHtmlDom\Contracts\NodeContract;
 use SimpleHtmlDom\Contracts\NodesCollectorContract;
 use SimpleHtmlDom\Traits\NodeCreators;
-use SimpleHtmlDom\Traits\NodeProducers;
 
 /**
  * Class Node
@@ -16,7 +15,7 @@ use SimpleHtmlDom\Traits\NodeProducers;
  */
 class Node implements NodeContract
 {
-    use NodeCreators, NodeProducers;
+    use NodeCreators;
 
     /**
      * Simple dom node object
@@ -72,26 +71,6 @@ class Node implements NodeContract
     protected function loadObject($node)
     {
         $this->node = $node;
-    }
-
-    /**
-     * Create new simple_html_dom instance
-     *
-     * @return simple_html_dom
-     */
-    protected function newSimpleDom()
-    {
-        return new simple_html_dom();
-    }
-
-    /**
-     * Get raw node from simple_html_dom
-     *
-     * @return simple_html_dom_node
-     */
-    public function getSimpleNode()
-    {
-        return $this->node;
     }
 
     /**
@@ -400,6 +379,41 @@ class Node implements NodeContract
     public function __toString()
     {
         return $this->outerHtml();
+    }
+
+    /**
+     * Save current node to file and get html
+     *
+     * @param string $filePath
+     * @return string
+     */
+    public function save($filePath = '')
+    {
+        $html = (string)$this;
+        if ($filePath !== '') {
+            file_put_contents($filePath, $html, LOCK_EX);
+        }
+        return $html;
+    }
+
+    /**
+     * Get raw node from simple_html_dom
+     *
+     * @return simple_html_dom_node
+     */
+    public function getSimpleNode()
+    {
+        return $this->node;
+    }
+
+    /**
+     * Create new simple_html_dom instance
+     *
+     * @return simple_html_dom
+     */
+    protected function newSimpleDom()
+    {
+        return new simple_html_dom();
     }
 
     /**

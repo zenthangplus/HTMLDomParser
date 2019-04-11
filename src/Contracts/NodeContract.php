@@ -9,22 +9,6 @@ namespace SimpleHtmlDom\Contracts;
 interface NodeContract
 {
     /**
-     * Save current DOM to file and get html
-     *
-     * @see \SimpleHtmlDom\Sources\simple_html_dom::save()
-     * @param string $filePath
-     * @return string
-     */
-    public function save($filePath = '');
-
-    /**
-     * Get raw node from simple_html_dom
-     *
-     * @return \SimpleHtmlDom\Sources\simple_html_dom_node
-     */
-    public function getSimpleNode();
-
-    /**
      * Get the node's name
      *
      * @see \SimpleHtmlDom\Sources\simple_html_dom_node::nodeName()
@@ -264,9 +248,25 @@ interface NodeContract
     public function dump($showAttr = true, $deep = 0);
 
     /**
+     * Save current DOM to file and get html
+     *
+     * @see \SimpleHtmlDom\Sources\simple_html_dom::save()
+     * @param string $filePath
+     * @return string
+     */
+    public function save($filePath = '');
+
+    /**
      * Convert current node to string
      *
      * @return string
      */
     public function __toString();
+
+    /**
+     * Get raw node from simple_html_dom
+     *
+     * @return \SimpleHtmlDom\Sources\simple_html_dom_node
+     */
+    public function getSimpleNode();
 }
