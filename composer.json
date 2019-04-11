@@ -1,6 +1,7 @@
 {
     "name": "zenthangplus/HTMLDomParser",
     "type": "library",
+    "description": "",
     "authors": [
         {
             "name": "zenthangplus",
@@ -11,5 +12,13 @@
         "files": ["src/Sources/simple_html_dom.php"],
         "psr-4": {"HTMLDomParser\\": "src/"}
     },
-    "require": {}
+    "autoload-dev": {
+        "psr-4": {
+            "HTMLDomParserTests\\": "tests/"
+        }
+    },
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^8"
+    }
 }
