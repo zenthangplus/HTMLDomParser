@@ -1,0 +1,677 @@
+<!-- Document from https://phpunit.readthedocs.io/en/8.0/ -->
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PHPUnit Manual &mdash; PHPUnit 8.0 Manual</title>
+
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="https://assets.readthedocs.org/static/css/sphinx_rtd_theme.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="copyright" title="Copyright" href="copyright.html" />
+    <link rel="next" title="1. Installing PHPUnit" href="installation.html" />
+
+
+    <script src="_static/js/modernizr.min.js"></script>
+
+    <!-- RTD Extra Head -->
+
+    <!--
+    Always link to the latest version, as canonical.
+    http://docs.readthedocs.org/en/latest/canonical.html
+    -->
+    <link rel="canonical" href="https://phpunit.readthedocs.io/en/8.0/" />
+
+    <link rel="stylesheet" href="https://assets.readthedocs.org/static/css/readthedocs-doc-embed.css" type="text/css" />
+
+    <script type="text/javascript" src="_static/readthedocs-data.js"></script>
+
+    <!-- Add page-specific data, which must exist in the page js, not global -->
+    <script type="text/javascript">
+        READTHEDOCS_DATA['page'] = 'index'
+        READTHEDOCS_DATA['source_suffix'] = '.rst'
+    </script>
+
+    <script type="text/javascript" src="https://assets.readthedocs.org/static/javascript/readthedocs-analytics.js"></script>
+
+    <!-- end RTD <extrahead> -->
+</head>
+
+<body class="wy-body-for-nav">
+
+
+<div class="wy-grid-for-nav">
+
+
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+        <div class="wy-side-scroll">
+            <div class="wy-side-nav-search">
+
+
+
+                <a href="#" class="icon icon-home"> PHPUnit
+
+
+
+                </a>
+
+
+
+
+                <div role="search">
+                    <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+                        <input type="text" name="q" placeholder="Search docs" />
+                        <input type="hidden" name="check_keywords" value="yes" />
+                        <input type="hidden" name="area" value="default" />
+                    </form>
+                </div>
+
+
+            </div>
+
+            <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+
+
+
+
+
+
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="installation.html">1. Installing PHPUnit</a><ul>
+                        <li class="toctree-l2"><a class="reference internal" href="installation.html#requirements">Requirements</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="installation.html#php-archive-phar">PHP Archive (PHAR)</a><ul>
+                            <li class="toctree-l3"><a class="reference internal" href="installation.html#verifying-phpunit-phar-releases">Verifying PHPUnit PHAR Releases</a></li>
+                        </ul>
+                        </li>
+                        <li class="toctree-l2"><a class="reference internal" href="installation.html#composer">Composer</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="installation.html#global-installation">Global Installation</a></li>
+                    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="writing-tests-for-phpunit.html">2. Writing Tests for PHPUnit</a><ul>
+                        <li class="toctree-l2"><a class="reference internal" href="writing-tests-for-phpunit.html#test-dependencies">Test Dependencies</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="writing-tests-for-phpunit.html#data-providers">Data Providers</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="writing-tests-for-phpunit.html#testing-exceptions">Testing Exceptions</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="writing-tests-for-phpunit.html#testing-php-errors">Testing PHP Errors</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="writing-tests-for-phpunit.html#testing-output">Testing Output</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="writing-tests-for-phpunit.html#error-output">Error output</a><ul>
+                            <li class="toctree-l3"><a class="reference internal" href="writing-tests-for-phpunit.html#edge-cases">Edge cases</a></li>
+                        </ul>
+                        </li>
+                    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="textui.html">3. The Command-Line Test Runner</a><ul>
+                        <li class="toctree-l2"><a class="reference internal" href="textui.html#command-line-options">Command-Line Options</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="textui.html#testdox">TestDox</a></li>
+                    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="fixtures.html">4. Fixtures</a><ul>
+                        <li class="toctree-l2"><a class="reference internal" href="fixtures.html#more-setup-than-teardown">More setUp() than tearDown()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="fixtures.html#variations">Variations</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="fixtures.html#sharing-fixture">Sharing Fixture</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="fixtures.html#global-state">Global State</a></li>
+                    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="organizing-tests.html">5. Organizing Tests</a><ul>
+                        <li class="toctree-l2"><a class="reference internal" href="organizing-tests.html#composing-a-test-suite-using-the-filesystem">Composing a Test Suite Using the Filesystem</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="organizing-tests.html#composing-a-test-suite-using-xml-configuration">Composing a Test Suite Using XML Configuration</a></li>
+                    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="risky-tests.html">6. Risky Tests</a><ul>
+                        <li class="toctree-l2"><a class="reference internal" href="risky-tests.html#useless-tests">Useless Tests</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="risky-tests.html#unintentionally-covered-code">Unintentionally Covered Code</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="risky-tests.html#output-during-test-execution">Output During Test Execution</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="risky-tests.html#test-execution-timeout">Test Execution Timeout</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="risky-tests.html#global-state-manipulation">Global State Manipulation</a></li>
+                    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="incomplete-and-skipped-tests.html">7. Incomplete and Skipped Tests</a><ul>
+                        <li class="toctree-l2"><a class="reference internal" href="incomplete-and-skipped-tests.html#incomplete-tests">Incomplete Tests</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="incomplete-and-skipped-tests.html#skipping-tests">Skipping Tests</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="incomplete-and-skipped-tests.html#skipping-tests-using-requires">Skipping Tests using &#64;requires</a></li>
+                    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="test-doubles.html">8. Test Doubles</a><ul>
+                        <li class="toctree-l2"><a class="reference internal" href="test-doubles.html#stubs">Stubs</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="test-doubles.html#mock-objects">Mock Objects</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="test-doubles.html#prophecy">Prophecy</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="test-doubles.html#mocking-traits-and-abstract-classes">Mocking Traits and Abstract Classes</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="test-doubles.html#stubbing-and-mocking-web-services">Stubbing and Mocking Web Services</a></li>
+                    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="code-coverage-analysis.html">9. Code Coverage Analysis</a><ul>
+                        <li class="toctree-l2"><a class="reference internal" href="code-coverage-analysis.html#software-metrics-for-code-coverage">Software Metrics for Code Coverage</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="code-coverage-analysis.html#whitelisting-files">Whitelisting Files</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="code-coverage-analysis.html#ignoring-code-blocks">Ignoring Code Blocks</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="code-coverage-analysis.html#specifying-covered-methods">Specifying Covered Methods</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="code-coverage-analysis.html#edge-cases">Edge Cases</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="code-coverage-analysis.html#speeding-up-code-coverage-with-xdebug">Speeding Up Code Coverage with Xdebug</a></li>
+                    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="logging.html">10. Logging</a><ul>
+                        <li class="toctree-l2"><a class="reference internal" href="logging.html#test-results-xml">Test Results (XML)</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="logging.html#code-coverage-xml">Code Coverage (XML)</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="logging.html#code-coverage-text">Code Coverage (TEXT)</a></li>
+                    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="extending-phpunit.html">11. Extending PHPUnit</a><ul>
+                        <li class="toctree-l2"><a class="reference internal" href="extending-phpunit.html#subclass-phpunit-framework-testcase">Subclass PHPUnit\Framework\TestCase</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="extending-phpunit.html#write-custom-assertions">Write custom assertions</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="extending-phpunit.html#implement-phpunit-framework-testlistener">Implement PHPUnit\Framework\TestListener</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="extending-phpunit.html#implement-phpunit-framework-test">Implement PHPUnit\Framework\Test</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="extending-phpunit.html#extending-the-testrunner">Extending the TestRunner</a><ul>
+                            <li class="toctree-l3"><a class="reference internal" href="extending-phpunit.html#available-hook-interfaces">Available Hook Interfaces</a></li>
+                        </ul>
+                        </li>
+                    </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Appendix</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="assertions.html">1. Assertions</a><ul>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#static-vs-non-static-usage-of-assertion-methods">Static vs. Non-Static Usage of Assertion Methods</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertarrayhaskey">assertArrayHasKey()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertclasshasattribute">assertClassHasAttribute()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertarraysubset">assertArraySubset()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertclasshasstaticattribute">assertClassHasStaticAttribute()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertcontains">assertContains()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertcontainsonly">assertContainsOnly()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertcontainsonlyinstancesof">assertContainsOnlyInstancesOf()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertcount">assertCount()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertdirectoryexists">assertDirectoryExists()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertdirectoryisreadable">assertDirectoryIsReadable()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertdirectoryiswritable">assertDirectoryIsWritable()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertempty">assertEmpty()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertequalxmlstructure">assertEqualXMLStructure()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertequals">assertEquals()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertfalse">assertFalse()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertfileequals">assertFileEquals()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertfileexists">assertFileExists()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertfileisreadable">assertFileIsReadable()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertfileiswritable">assertFileIsWritable()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertgreaterthan">assertGreaterThan()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertgreaterthanorequal">assertGreaterThanOrEqual()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertinfinite">assertInfinite()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertinstanceof">assertInstanceOf()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertisarray">assertIsArray()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertisbool">assertIsBool()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertiscallable">assertIsCallable()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertisfloat">assertIsFloat()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertisint">assertIsInt()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertisiterable">assertIsIterable()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertisnumeric">assertIsNumeric()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertisobject">assertIsObject()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertisresource">assertIsResource()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertisscalar">assertIsScalar()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertisstring">assertIsString()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertisreadable">assertIsReadable()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertiswritable">assertIsWritable()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertjsonfileequalsjsonfile">assertJsonFileEqualsJsonFile()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertjsonstringequalsjsonfile">assertJsonStringEqualsJsonFile()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertjsonstringequalsjsonstring">assertJsonStringEqualsJsonString()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertlessthan">assertLessThan()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertlessthanorequal">assertLessThanOrEqual()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertnan">assertNan()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertnull">assertNull()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertobjecthasattribute">assertObjectHasAttribute()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertregexp">assertRegExp()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertstringmatchesformat">assertStringMatchesFormat()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertstringmatchesformatfile">assertStringMatchesFormatFile()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertsame">assertSame()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertstringendswith">assertStringEndsWith()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertstringequalsfile">assertStringEqualsFile()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertstringstartswith">assertStringStartsWith()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertthat">assertThat()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#asserttrue">assertTrue()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertxmlfileequalsxmlfile">assertXmlFileEqualsXmlFile()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertxmlstringequalsxmlfile">assertXmlStringEqualsXmlFile()</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertxmlstringequalsxmlstring">assertXmlStringEqualsXmlString()</a></li>
+                    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="annotations.html">2. Annotations</a><ul>
+                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#author">&#64;author</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#after">&#64;after</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#afterclass">&#64;afterClass</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#backupglobals">&#64;backupGlobals</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#backupstaticattributes">&#64;backupStaticAttributes</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#before">&#64;before</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#beforeclass">&#64;beforeClass</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#codecoverageignore">&#64;codeCoverageIgnore*</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#covers">&#64;covers</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#coversdefaultclass">&#64;coversDefaultClass</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#coversnothing">&#64;coversNothing</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#dataprovider">&#64;dataProvider</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#depends">&#64;depends</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#doesnotperformassertions">&#64;doesNotPerformAssertions</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#group">&#64;group</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#large">&#64;large</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#medium">&#64;medium</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#preserveglobalstate">&#64;preserveGlobalState</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#requires">&#64;requires</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#runtestsinseparateprocesses">&#64;runTestsInSeparateProcesses</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#runinseparateprocess">&#64;runInSeparateProcess</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#small">&#64;small</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#test">&#64;test</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#testdox">&#64;testdox</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#testwith">&#64;testWith</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#ticket">&#64;ticket</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#uses">&#64;uses</a></li>
+                    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="configuration.html">3. The XML Configuration File</a><ul>
+                        <li class="toctree-l2"><a class="reference internal" href="configuration.html#phpunit">PHPUnit</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="configuration.html#test-suites">Test Suites</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="configuration.html#groups">Groups</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="configuration.html#whitelisting-files-for-code-coverage">Whitelisting Files for Code Coverage</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="configuration.html#logging">Logging</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="configuration.html#test-listeners">Test Listeners</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="configuration.html#registering-testrunner-extensions">Registering TestRunner Extensions</a></li>
+                        <li class="toctree-l2"><a class="reference internal" href="configuration.html#setting-php-ini-settings-constants-and-global-variables">Setting PHP INI settings, Constants and Global Variables</a></li>
+                    </ul>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="bibliography.html">4. Bibliography</a></li>
+                    <li class="toctree-l1"><a class="reference internal" href="copyright.html">5. Copyright</a></li>
+                </ul>
+
+
+
+            </div>
+        </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+
+        <nav class="wy-nav-top" aria-label="top navigation">
+
+            <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+            <a href="#">PHPUnit</a>
+
+        </nav>
+
+
+        <div class="wy-nav-content">
+
+            <div class="rst-content">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <div role="navigation" aria-label="breadcrumbs navigation">
+
+                    <ul class="wy-breadcrumbs">
+
+                        <li><a href="#">Docs</a> &raquo;</li>
+
+                        <li>PHPUnit Manual</li>
+
+
+                        <li class="wy-breadcrumbs-aside">
+
+
+
+                            <a href="https://github.com/sebastianbergmann/phpunit-documentation-english//8.0/src/index.rst" class="fa fa-github"> Edit on GitHub</a>
+
+
+
+                        </li>
+
+                    </ul>
+
+
+                    <hr/>
+                </div>
+                <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+                    <div itemprop="articleBody">
+
+                        <div class="section" id="phpunit-manual">
+                            <h1>PHPUnit Manual</h1>
+                            <p>Edition for PHPUnit 8.0. Updated on Mar 29, 2019.</p>
+                            <p>Sebastian Bergmann</p>
+                            <p>This work is licensed under the Creative Commons Attribution 3.0 Unported License.</p>
+                            <p>Contents:</p>
+                            <div class="toctree-wrapper compound">
+                                <ul>
+                                    <li class="toctree-l1"><a class="reference internal" href="installation.html">1. Installing PHPUnit</a><ul>
+                                        <li class="toctree-l2"><a class="reference internal" href="installation.html#requirements">Requirements</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="installation.html#php-archive-phar">PHP Archive (PHAR)</a><ul>
+                                            <li class="toctree-l3"><a class="reference internal" href="installation.html#verifying-phpunit-phar-releases">Verifying PHPUnit PHAR Releases</a></li>
+                                        </ul>
+                                        </li>
+                                        <li class="toctree-l2"><a class="reference internal" href="installation.html#composer">Composer</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="installation.html#global-installation">Global Installation</a></li>
+                                    </ul>
+                                    </li>
+                                    <li class="toctree-l1"><a class="reference internal" href="writing-tests-for-phpunit.html">2. Writing Tests for PHPUnit</a><ul>
+                                        <li class="toctree-l2"><a class="reference internal" href="writing-tests-for-phpunit.html#test-dependencies">Test Dependencies</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="writing-tests-for-phpunit.html#data-providers">Data Providers</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="writing-tests-for-phpunit.html#testing-exceptions">Testing Exceptions</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="writing-tests-for-phpunit.html#testing-php-errors">Testing PHP Errors</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="writing-tests-for-phpunit.html#testing-output">Testing Output</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="writing-tests-for-phpunit.html#error-output">Error output</a><ul>
+                                            <li class="toctree-l3"><a class="reference internal" href="writing-tests-for-phpunit.html#edge-cases">Edge cases</a></li>
+                                        </ul>
+                                        </li>
+                                    </ul>
+                                    </li>
+                                    <li class="toctree-l1"><a class="reference internal" href="textui.html">3. The Command-Line Test Runner</a><ul>
+                                        <li class="toctree-l2"><a class="reference internal" href="textui.html#command-line-options">Command-Line Options</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="textui.html#testdox">TestDox</a></li>
+                                    </ul>
+                                    </li>
+                                    <li class="toctree-l1"><a class="reference internal" href="fixtures.html">4. Fixtures</a><ul>
+                                        <li class="toctree-l2"><a class="reference internal" href="fixtures.html#more-setup-than-teardown">More setUp() than tearDown()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="fixtures.html#variations">Variations</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="fixtures.html#sharing-fixture">Sharing Fixture</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="fixtures.html#global-state">Global State</a></li>
+                                    </ul>
+                                    </li>
+                                    <li class="toctree-l1"><a class="reference internal" href="organizing-tests.html">5. Organizing Tests</a><ul>
+                                        <li class="toctree-l2"><a class="reference internal" href="organizing-tests.html#composing-a-test-suite-using-the-filesystem">Composing a Test Suite Using the Filesystem</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="organizing-tests.html#composing-a-test-suite-using-xml-configuration">Composing a Test Suite Using XML Configuration</a></li>
+                                    </ul>
+                                    </li>
+                                    <li class="toctree-l1"><a class="reference internal" href="risky-tests.html">6. Risky Tests</a><ul>
+                                        <li class="toctree-l2"><a class="reference internal" href="risky-tests.html#useless-tests">Useless Tests</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="risky-tests.html#unintentionally-covered-code">Unintentionally Covered Code</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="risky-tests.html#output-during-test-execution">Output During Test Execution</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="risky-tests.html#test-execution-timeout">Test Execution Timeout</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="risky-tests.html#global-state-manipulation">Global State Manipulation</a></li>
+                                    </ul>
+                                    </li>
+                                    <li class="toctree-l1"><a class="reference internal" href="incomplete-and-skipped-tests.html">7. Incomplete and Skipped Tests</a><ul>
+                                        <li class="toctree-l2"><a class="reference internal" href="incomplete-and-skipped-tests.html#incomplete-tests">Incomplete Tests</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="incomplete-and-skipped-tests.html#skipping-tests">Skipping Tests</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="incomplete-and-skipped-tests.html#skipping-tests-using-requires">Skipping Tests using &#64;requires</a></li>
+                                    </ul>
+                                    </li>
+                                    <li class="toctree-l1"><a class="reference internal" href="test-doubles.html">8. Test Doubles</a><ul>
+                                        <li class="toctree-l2"><a class="reference internal" href="test-doubles.html#stubs">Stubs</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="test-doubles.html#mock-objects">Mock Objects</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="test-doubles.html#prophecy">Prophecy</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="test-doubles.html#mocking-traits-and-abstract-classes">Mocking Traits and Abstract Classes</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="test-doubles.html#stubbing-and-mocking-web-services">Stubbing and Mocking Web Services</a></li>
+                                    </ul>
+                                    </li>
+                                    <li class="toctree-l1"><a class="reference internal" href="code-coverage-analysis.html">9. Code Coverage Analysis</a><ul>
+                                        <li class="toctree-l2"><a class="reference internal" href="code-coverage-analysis.html#software-metrics-for-code-coverage">Software Metrics for Code Coverage</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="code-coverage-analysis.html#whitelisting-files">Whitelisting Files</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="code-coverage-analysis.html#ignoring-code-blocks">Ignoring Code Blocks</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="code-coverage-analysis.html#specifying-covered-methods">Specifying Covered Methods</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="code-coverage-analysis.html#edge-cases">Edge Cases</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="code-coverage-analysis.html#speeding-up-code-coverage-with-xdebug">Speeding Up Code Coverage with Xdebug</a></li>
+                                    </ul>
+                                    </li>
+                                    <li class="toctree-l1"><a class="reference internal" href="logging.html">10. Logging</a><ul>
+                                        <li class="toctree-l2"><a class="reference internal" href="logging.html#test-results-xml">Test Results (XML)</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="logging.html#code-coverage-xml">Code Coverage (XML)</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="logging.html#code-coverage-text">Code Coverage (TEXT)</a></li>
+                                    </ul>
+                                    </li>
+                                    <li class="toctree-l1"><a class="reference internal" href="extending-phpunit.html">11. Extending PHPUnit</a><ul>
+                                        <li class="toctree-l2"><a class="reference internal" href="extending-phpunit.html#subclass-phpunit-framework-testcase">Subclass PHPUnit\Framework\TestCase</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="extending-phpunit.html#write-custom-assertions">Write custom assertions</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="extending-phpunit.html#implement-phpunit-framework-testlistener">Implement PHPUnit\Framework\TestListener</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="extending-phpunit.html#implement-phpunit-framework-test">Implement PHPUnit\Framework\Test</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="extending-phpunit.html#extending-the-testrunner">Extending the TestRunner</a><ul>
+                                            <li class="toctree-l3"><a class="reference internal" href="extending-phpunit.html#available-hook-interfaces">Available Hook Interfaces</a></li>
+                                        </ul>
+                                        </li>
+                                    </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="toctree-wrapper compound">
+                                <p class="caption"><span class="caption-text">Appendix</span></p>
+                                <ul>
+                                    <li class="toctree-l1"><a class="reference internal" href="assertions.html">1. Assertions</a><ul>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#static-vs-non-static-usage-of-assertion-methods">Static vs. Non-Static Usage of Assertion Methods</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertarrayhaskey">assertArrayHasKey()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertclasshasattribute">assertClassHasAttribute()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertarraysubset">assertArraySubset()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertclasshasstaticattribute">assertClassHasStaticAttribute()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertcontains">assertContains()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertcontainsonly">assertContainsOnly()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertcontainsonlyinstancesof">assertContainsOnlyInstancesOf()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertcount">assertCount()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertdirectoryexists">assertDirectoryExists()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertdirectoryisreadable">assertDirectoryIsReadable()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertdirectoryiswritable">assertDirectoryIsWritable()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertempty">assertEmpty()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertequalxmlstructure">assertEqualXMLStructure()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertequals">assertEquals()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertfalse">assertFalse()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertfileequals">assertFileEquals()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertfileexists">assertFileExists()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertfileisreadable">assertFileIsReadable()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertfileiswritable">assertFileIsWritable()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertgreaterthan">assertGreaterThan()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertgreaterthanorequal">assertGreaterThanOrEqual()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertinfinite">assertInfinite()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertinstanceof">assertInstanceOf()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertisarray">assertIsArray()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertisbool">assertIsBool()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertiscallable">assertIsCallable()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertisfloat">assertIsFloat()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertisint">assertIsInt()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertisiterable">assertIsIterable()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertisnumeric">assertIsNumeric()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertisobject">assertIsObject()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertisresource">assertIsResource()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertisscalar">assertIsScalar()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertisstring">assertIsString()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertisreadable">assertIsReadable()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertiswritable">assertIsWritable()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertjsonfileequalsjsonfile">assertJsonFileEqualsJsonFile()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertjsonstringequalsjsonfile">assertJsonStringEqualsJsonFile()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertjsonstringequalsjsonstring">assertJsonStringEqualsJsonString()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertlessthan">assertLessThan()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertlessthanorequal">assertLessThanOrEqual()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertnan">assertNan()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertnull">assertNull()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertobjecthasattribute">assertObjectHasAttribute()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertregexp">assertRegExp()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertstringmatchesformat">assertStringMatchesFormat()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertstringmatchesformatfile">assertStringMatchesFormatFile()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertsame">assertSame()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertstringendswith">assertStringEndsWith()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertstringequalsfile">assertStringEqualsFile()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertstringstartswith">assertStringStartsWith()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertthat">assertThat()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#asserttrue">assertTrue()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertxmlfileequalsxmlfile">assertXmlFileEqualsXmlFile()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertxmlstringequalsxmlfile">assertXmlStringEqualsXmlFile()</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="assertions.html#assertxmlstringequalsxmlstring">assertXmlStringEqualsXmlString()</a></li>
+                                    </ul>
+                                    </li>
+                                    <li class="toctree-l1"><a class="reference internal" href="annotations.html">2. Annotations</a><ul>
+                                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#author">&#64;author</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#after">&#64;after</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#afterclass">&#64;afterClass</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#backupglobals">&#64;backupGlobals</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#backupstaticattributes">&#64;backupStaticAttributes</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#before">&#64;before</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#beforeclass">&#64;beforeClass</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#codecoverageignore">&#64;codeCoverageIgnore*</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#covers">&#64;covers</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#coversdefaultclass">&#64;coversDefaultClass</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#coversnothing">&#64;coversNothing</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#dataprovider">&#64;dataProvider</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#depends">&#64;depends</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#doesnotperformassertions">&#64;doesNotPerformAssertions</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#group">&#64;group</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#large">&#64;large</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#medium">&#64;medium</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#preserveglobalstate">&#64;preserveGlobalState</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#requires">&#64;requires</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#runtestsinseparateprocesses">&#64;runTestsInSeparateProcesses</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#runinseparateprocess">&#64;runInSeparateProcess</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#small">&#64;small</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#test">&#64;test</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#testdox">&#64;testdox</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#testwith">&#64;testWith</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#ticket">&#64;ticket</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="annotations.html#uses">&#64;uses</a></li>
+                                    </ul>
+                                    </li>
+                                    <li class="toctree-l1"><a class="reference internal" href="configuration.html">3. The XML Configuration File</a><ul>
+                                        <li class="toctree-l2"><a class="reference internal" href="configuration.html#phpunit">PHPUnit</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="configuration.html#test-suites">Test Suites</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="configuration.html#groups">Groups</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="configuration.html#whitelisting-files-for-code-coverage">Whitelisting Files for Code Coverage</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="configuration.html#logging">Logging</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="configuration.html#test-listeners">Test Listeners</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="configuration.html#registering-testrunner-extensions">Registering TestRunner Extensions</a></li>
+                                        <li class="toctree-l2"><a class="reference internal" href="configuration.html#setting-php-ini-settings-constants-and-global-variables">Setting PHP INI settings, Constants and Global Variables</a></li>
+                                    </ul>
+                                    </li>
+                                    <li class="toctree-l1"><a class="reference internal" href="bibliography.html">4. Bibliography</a></li>
+                                    <li class="toctree-l1"><a class="reference internal" href="copyright.html">5. Copyright</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+                <footer>
+
+                    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+
+                        <a href="installation.html" class="btn btn-neutral float-right" title="1. Installing PHPUnit" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+
+
+                    </div>
+
+
+                    <hr/>
+
+                    <div role="contentinfo">
+                        <p>
+                            &copy; <a href="copyright.html">Copyright</a> 2019, Sebastian Bergmann.
+
+                            <span class="commit">
+          Revision <code>8c1bd70e</code>.
+        </span>
+
+
+                        </p>
+                    </div>
+
+                </footer>
+
+            </div>
+        </div>
+
+    </section>
+
+</div>
+
+
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Read the Docs</span>
+      v: 8.0
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions">
+        <dl>
+            <dt>Versions</dt>
+
+            <dd><a href="/en/latest/">latest</a></dd>
+
+            <dd><a href="/en/8.0/">8.0</a></dd>
+
+            <dd><a href="/en/7.5/">7.5</a></dd>
+
+            <dd><a href="/en/7.4/">7.4</a></dd>
+
+            <dd><a href="/en/7.3/">7.3</a></dd>
+
+            <dd><a href="/en/7.2/">7.2</a></dd>
+
+            <dd><a href="/en/7.1/">7.1</a></dd>
+
+            <dd><a href="/en/7.0/">7.0</a></dd>
+
+            <dd><a href="/en/master/">master</a></dd>
+
+        </dl>
+        <dl>
+            <dt>Downloads</dt>
+
+            <dd><a href="//readthedocs.org/projects/phpunit/downloads/pdf/8.0/">pdf</a></dd>
+
+            <dd><a href="//readthedocs.org/projects/phpunit/downloads/htmlzip/8.0/">htmlzip</a></dd>
+
+            <dd><a href="//readthedocs.org/projects/phpunit/downloads/epub/8.0/">epub</a></dd>
+
+        </dl>
+        <dl>
+            <dt>On Read the Docs</dt>
+            <dd>
+                <a href="//readthedocs.org/projects/phpunit/?fromdocs=phpunit">Project Home</a>
+            </dd>
+            <dd>
+                <a href="//readthedocs.org/builds/phpunit/?fromdocs=phpunit">Builds</a>
+            </dd>
+        </dl>
+        <hr/>
+        Free document hosting provided by <a href="http://www.readthedocs.org">Read the Docs</a>.
+
+    </div>
+</div>
+
+
+
+
+
+<script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:'./',
+        VERSION:'8.0',
+        LANGUAGE:'en',
+        COLLAPSE_INDEX:false,
+        FILE_SUFFIX:'.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+    };
+</script>
+<script type="text/javascript" src="_static/jquery.js"></script>
+<script type="text/javascript" src="_static/underscore.js"></script>
+<script type="text/javascript" src="_static/doctools.js"></script>
+<script type="text/javascript" src="https://assets.readthedocs.org/static/javascript/readthedocs-doc-embed.js"></script>
+
+
+
+
+
+
+<script type="text/javascript">
+    jQuery(function () {
+
+        SphinxRtdTheme.Navigation.enableSticky();
+
+    });
+</script>
+
+</body>
+</html>
