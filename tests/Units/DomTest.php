@@ -12,6 +12,7 @@ use PHPUnit\Framework\TestCase;
  * Class DomTest
  * @package HTMLDomParserTests
  * @covers \HTMLDomParser\Dom
+ * @depends NodeTest
  */
 class DomTest extends TestCase
 {
