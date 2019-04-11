@@ -1,5 +1,5 @@
 {
-    "name": "zenthangplus/port-simplehtmldom",
+    "name": "zenthangplus/HTMLDomParser",
     "type": "library",
     "authors": [
         {
@@ -9,7 +9,7 @@
     ],
     "autoload": {
         "files": ["src/Sources/simple_html_dom.php"],
-        "psr-4": {"SimpleHtmlDom\\": "src/"}
+        "psr-4": {"HTMLDomParser\\": "src/"}
     },
     "require": {}
 }

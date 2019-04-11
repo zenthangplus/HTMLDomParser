@@ -1,17 +1,17 @@
 <?php
 
-namespace SimpleHtmlDom;
+namespace HTMLDomParser;
 
-use SimpleHtmlDom\Sources\simple_html_dom;
-use SimpleHtmlDom\Sources\simple_html_dom_node;
-use SimpleHtmlDom\Collectors\NodesCollector;
-use SimpleHtmlDom\Contracts\NodeContract;
-use SimpleHtmlDom\Contracts\NodesCollectorContract;
-use SimpleHtmlDom\Traits\NodeCreators;
+use HTMLDomParser\Sources\simple_html_dom;
+use HTMLDomParser\Sources\simple_html_dom_node;
+use HTMLDomParser\Collectors\NodesCollector;
+use HTMLDomParser\Contracts\NodeContract;
+use HTMLDomParser\Contracts\NodesCollectorContract;
+use HTMLDomParser\Traits\NodeCreators;
 
 /**
  * Class Node
- * @package SimpleHtmlDom
+ * @package HTMLDomParser
  */
 class Node implements NodeContract
 {

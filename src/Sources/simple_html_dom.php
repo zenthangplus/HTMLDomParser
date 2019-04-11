@@ -1,6 +1,6 @@
 <?php
 
-namespace SimpleHtmlDom\Sources;
+namespace HTMLDomParser\Sources;
 
 /**
  * Website: http://sourceforge.net/projects/simplehtmldom/

@@ -1,14 +1,14 @@
 <?php
 
-namespace SimpleHtmlDom\Collectors;
+namespace HTMLDomParser\Collectors;
 
-use SimpleHtmlDom\Node;
-use SimpleHtmlDom\Sources\simple_html_dom_node;
-use SimpleHtmlDom\Contracts\NodesCollectorContract;
+use HTMLDomParser\Node;
+use HTMLDomParser\Sources\simple_html_dom_node;
+use HTMLDomParser\Contracts\NodesCollectorContract;
 
 /**
  * Class NodesCollector
- * @package SimpleHtmlDom
+ * @package HTMLDomParser
  */
 class NodesCollector implements NodesCollectorContract
 {

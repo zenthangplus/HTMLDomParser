@@ -1,15 +1,15 @@
 <?php
 
-namespace SimpleHtmlDom;
+namespace HTMLDomParser;
 
-use SimpleHtmlDom\Contracts\DomContract;
-use SimpleHtmlDom\Sources\simple_html_dom;
-use SimpleHtmlDom\Sources\simple_html_dom_node;
-use SimpleHtmlDom\Traits\DomCreators;
+use HTMLDomParser\Contracts\DomContract;
+use HTMLDomParser\Sources\simple_html_dom;
+use HTMLDomParser\Sources\simple_html_dom_node;
+use HTMLDomParser\Traits\DomCreators;
 
 /**
  * Class Dom
- * @package SimpleHtmlDom
+ * @package HTMLDomParser
  */
 class Dom extends Node implements DomContract
 {

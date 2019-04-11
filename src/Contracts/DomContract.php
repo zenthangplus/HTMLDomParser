@@ -1,10 +1,10 @@
 <?php
 
-namespace SimpleHtmlDom\Contracts;
+namespace HTMLDomParser\Contracts;
 
 /**
  * Interface DomContract
- * @package SimpleHtmlDom\Contracts
+ * @package HTMLDomParser\Contracts
  */
 interface DomContract extends NodeContract
 {

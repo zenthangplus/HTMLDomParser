@@ -1,17 +1,17 @@
 <?php
 
-namespace SimpleHtmlDom\Contracts;
+namespace HTMLDomParser\Contracts;
 
 /**
  * Interface DomNodeContract
- * @package SimpleHtmlDom
+ * @package HTMLDomParser
  */
 interface NodeContract
 {
     /**
      * Get the node's name
      *
-     * @see \SimpleHtmlDom\Sources\simple_html_dom_node::nodeName()
+     * @see \HTMLDomParser\Sources\simple_html_dom_node::nodeName()
      * @return string
      */
     public function getName();
@@ -19,7 +19,7 @@ interface NodeContract
     /**
      * Get the parent node
      *
-     * @see \SimpleHtmlDom\Sources\simple_html_dom_node::parent()
+     * @see \HTMLDomParser\Sources\simple_html_dom_node::parent()
      * @return NodeContract
      */
     public function getParent();
@@ -27,7 +27,7 @@ interface NodeContract
     /**
      * Set the parent node for current node
      *
-     * @see \SimpleHtmlDom\Sources\simple_html_dom_node::parent()
+     * @see \HTMLDomParser\Sources\simple_html_dom_node::parent()
      * @param NodeContract $parent
      */
     public function setParent($parent);
@@ -35,7 +35,7 @@ interface NodeContract
     /**
      * Check the current node has children node
      *
-     * @see \SimpleHtmlDom\Sources\simple_html_dom_node::has_child()
+     * @see \HTMLDomParser\Sources\simple_html_dom_node::has_child()
      * @return bool
      */
     public function hasChild();
@@ -43,7 +43,7 @@ interface NodeContract
     /**
      * Get child node by index
      *
-     * @see \SimpleHtmlDom\Sources\simple_html_dom_node::children()
+     * @see \HTMLDomParser\Sources\simple_html_dom_node::children()
      * @param int $idx
      * @return null|NodeContract
      */
@@ -52,7 +52,7 @@ interface NodeContract
     /**
      * Get all child nodes
      *
-     * @see \SimpleHtmlDom\Sources\simple_html_dom_node::children()
+     * @see \HTMLDomParser\Sources\simple_html_dom_node::children()
      * @return NodesCollectorContract
      */
     public function getChildren();
@@ -60,7 +60,7 @@ interface NodeContract
     /**
      * Get the first child
      *
-     * @see \SimpleHtmlDom\Sources\simple_html_dom_node::firstChild()
+     * @see \HTMLDomParser\Sources\simple_html_dom_node::firstChild()
      * @return NodeContract|null
      */
     public function getFirstChild();
@@ -68,7 +68,7 @@ interface NodeContract
     /**
      * Get the last child
      *
-     * @see \SimpleHtmlDom\Sources\simple_html_dom_node::lastChild()
+     * @see \HTMLDomParser\Sources\simple_html_dom_node::lastChild()
      * @return NodeContract|null
      */
     public function getLastChild();
@@ -76,7 +76,7 @@ interface NodeContract
     /**
      * Get the next sibling node
      *
-     * @see \SimpleHtmlDom\Sources\simple_html_dom_node::nextSibling()
+     * @see \HTMLDomParser\Sources\simple_html_dom_node::nextSibling()
      * @return NodeContract|null
      */
     public function getNextSibling();
@@ -84,7 +84,7 @@ interface NodeContract
     /**
      * Get previous sibling node
      *
-     * @see \SimpleHtmlDom\Sources\simple_html_dom_node::previousSibling()
+     * @see \HTMLDomParser\Sources\simple_html_dom_node::previousSibling()
      * @return NodeContract|null
      */
     public function getPrevSibling();
@@ -92,7 +92,7 @@ interface NodeContract
     /**
      * Traverse ancestors to the first matching tag.
      *
-     * @see \SimpleHtmlDom\Sources\simple_html_dom_node::find_ancestor_tag()
+     * @see \HTMLDomParser\Sources\simple_html_dom_node::find_ancestor_tag()
      * @param $tag
      * @return NodeContract|null
      */
@@ -101,7 +101,7 @@ interface NodeContract
     /**
      * Find elements by CSS selector
      *
-     * @see \SimpleHtmlDom\Sources\simple_html_dom_node::find()
+     * @see \HTMLDomParser\Sources\simple_html_dom_node::find()
      * @param string $selector
      * @param bool $lowercase
      * @return NodesCollectorContract
@@ -112,7 +112,7 @@ interface NodeContract
      * Find a element by CSS selector,
      * if current node contains multiple elements with same selector, return the first one
      *
-     * @see \SimpleHtmlDom\Sources\simple_html_dom_node::find()
+     * @see \HTMLDomParser\Sources\simple_html_dom_node::find()
      * @param string $selector
      * @param bool $lowercase
      * @return NodeContract|null
@@ -122,7 +122,7 @@ interface NodeContract
     /**
      * Get element by it's ID
      *
-     * @see \SimpleHtmlDom\Sources\simple_html_dom_node::getElementById()
+     * @see \HTMLDomParser\Sources\simple_html_dom_node::getElementById()
      * @param string $id
      * @return NodeContract|null
      */
@@ -132,7 +132,7 @@ interface NodeContract
      * Get a element by tag name,
      * if current node has multiple tags with same name, return the first one
      *
-     * @see \SimpleHtmlDom\Sources\simple_html_dom_node::getElementByTagName()
+     * @see \HTMLDomParser\Sources\simple_html_dom_node::getElementByTagName()
      * @param string $tag
      * @return NodeContract|null
      */
@@ -141,7 +141,7 @@ interface NodeContract
     /**
      * Get all elements by tag name
      *
-     * @see \SimpleHtmlDom\Sources\simple_html_dom_node::getElementsByTagName()
+     * @see \HTMLDomParser\Sources\simple_html_dom_node::getElementsByTagName()
      * @param string $tag
      * @return NodesCollectorContract
      */
@@ -150,7 +150,7 @@ interface NodeContract
     /**
      * Get node's inner text (everything inside the opening and closing tags)
      *
-     * @see \SimpleHtmlDom\Sources\simple_html_dom_node::innertext()
+     * @see \HTMLDomParser\Sources\simple_html_dom_node::innertext()
      * @return string
      */
     public function innerHtml();
@@ -158,7 +158,7 @@ interface NodeContract
     /**
      * Get node's xml text (inner text as a CDATA section)
      *
-     * @see \SimpleHtmlDom\Sources\simple_html_dom_node::xmltext()
+     * @see \HTMLDomParser\Sources\simple_html_dom_node::xmltext()
      * @return string
      */
     public function innerXml();
@@ -166,7 +166,7 @@ interface NodeContract
     /**
      * Get node's outer text (everything including the opening and closing tags)
      *
-     * @see \SimpleHtmlDom\Sources\simple_html_dom_node::outertext()
+     * @see \HTMLDomParser\Sources\simple_html_dom_node::outertext()
      * @return string
      */
     public function outerHtml();
@@ -174,7 +174,7 @@ interface NodeContract
     /**
      * Get node's plain text (everything excluding all tags)
      *
-     * @see \SimpleHtmlDom\Sources\simple_html_dom_node::text()
+     * @see \HTMLDomParser\Sources\simple_html_dom_node::text()
      * @return string
      */
     public function text();
@@ -182,7 +182,7 @@ interface NodeContract
     /**
      * Get a attribute by name
      *
-     * @see \SimpleHtmlDom\Sources\simple_html_dom_node::getAttribute()
+     * @see \HTMLDomParser\Sources\simple_html_dom_node::getAttribute()
      * @param string $name
      * @return string
      */
@@ -191,7 +191,7 @@ interface NodeContract
     /**
      * Set attribute for current node
      *
-     * @see \SimpleHtmlDom\Sources\simple_html_dom_node::setAttribute()
+     * @see \HTMLDomParser\Sources\simple_html_dom_node::setAttribute()
      * @param string $name
      * @param $value
      */
@@ -200,7 +200,7 @@ interface NodeContract
     /**
      * Get all attributes for current node
      *
-     * @see \SimpleHtmlDom\Sources\simple_html_dom_node::getAllAttributes()
+     * @see \HTMLDomParser\Sources\simple_html_dom_node::getAllAttributes()
      * @return array
      */
     public function getAttributes();
@@ -208,7 +208,7 @@ interface NodeContract
     /**
      * Check an attribute exists in current node
      *
-     * @see \SimpleHtmlDom\Sources\simple_html_dom_node::hasAttribute()
+     * @see \HTMLDomParser\Sources\simple_html_dom_node::hasAttribute()
      * @param string $name
      * @return bool
      */
@@ -217,7 +217,7 @@ interface NodeContract
     /**
      * Remove an attribute from current node
      *
-     * @see \SimpleHtmlDom\Sources\simple_html_dom_node::removeAttribute()
+     * @see \HTMLDomParser\Sources\simple_html_dom_node::removeAttribute()
      * @param string $name
      */
     public function removeAttribute($name);
@@ -225,7 +225,7 @@ interface NodeContract
     /**
      * Append a node to current node
      *
-     * @see \SimpleHtmlDom\Sources\simple_html_dom_node::appendChild()
+     * @see \HTMLDomParser\Sources\simple_html_dom_node::appendChild()
      * @param NodeContract $node
      */
     public function appendChild($node);
@@ -233,7 +233,7 @@ interface NodeContract
     /**
      * Build node's text with tag
      *
-     * @see \SimpleHtmlDom\Sources\simple_html_dom_node::makeup()
+     * @see \HTMLDomParser\Sources\simple_html_dom_node::makeup()
      * @return string
      */
     public function makeup();
@@ -241,7 +241,7 @@ interface NodeContract
     /**
      * Dump node's tree
      *
-     * @see \SimpleHtmlDom\Sources\simple_html_dom_node::dump()
+     * @see \HTMLDomParser\Sources\simple_html_dom_node::dump()
      * @param bool $showAttr
      * @param int $deep
      */
@@ -250,7 +250,7 @@ interface NodeContract
     /**
      * Save current DOM to file and get html
      *
-     * @see \SimpleHtmlDom\Sources\simple_html_dom::save()
+     * @see \HTMLDomParser\Sources\simple_html_dom::save()
      * @param string $filePath
      * @return string
      */
@@ -266,7 +266,7 @@ interface NodeContract
     /**
      * Get raw node from simple_html_dom
      *
-     * @return \SimpleHtmlDom\Sources\simple_html_dom_node
+     * @return \HTMLDomParser\Sources\simple_html_dom_node
      */
     public function getSimpleNode();
 }

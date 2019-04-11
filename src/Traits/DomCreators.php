@@ -1,14 +1,14 @@
 <?php
 
-namespace SimpleHtmlDom\Traits;
+namespace HTMLDomParser\Traits;
 
-use SimpleHtmlDom\Contracts\DomContract;
-use SimpleHtmlDom\Dom;
-use SimpleHtmlDom\Node;
+use HTMLDomParser\Contracts\DomContract;
+use HTMLDomParser\Dom;
+use HTMLDomParser\Node;
 
 /**
  * Trait DomCreators
- * @package SimpleHtmlDom\Traits
+ * @package HTMLDomParser\Traits
  */
 trait DomCreators
 {

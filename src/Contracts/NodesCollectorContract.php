@@ -1,12 +1,12 @@
 <?php
 
-namespace SimpleHtmlDom\Contracts;
+namespace HTMLDomParser\Contracts;
 
 use \Iterator;
 
 /**
  * Interface NodesCollectorContract
- * @package SimpleHtmlDom\Contracts
+ * @package HTMLDomParser\Contracts
  */
 interface NodesCollectorContract extends Iterator
 {
