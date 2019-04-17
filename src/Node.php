@@ -130,7 +130,7 @@ class Node implements NodeContract
     /**
      * Get all child nodes
      *
-     * @return NodesCollectorContract
+     * @return NodesCollectorContract|NodeContract[]
      */
     public function getChildren()
     {
@@ -193,7 +193,7 @@ class Node implements NodeContract
      *
      * @param string $selector
      * @param bool $lowercase
-     * @return NodesCollectorContract
+     * @return NodesCollectorContract|NodeContract[]
      */
     public function find($selector, $lowercase = false)
     {
@@ -240,7 +240,7 @@ class Node implements NodeContract
      * Get all elements by a tag name
      *
      * @param string $tag
-     * @return NodesCollectorContract
+     * @return NodesCollectorContract|NodeContract[]
      */
     public function getElementsByTagName($tag)
     {

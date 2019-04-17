@@ -22,7 +22,7 @@ class NodesCollector implements NodesCollectorContract
     /**
      * Store list of Nodes
      *
-     * @var Node[]
+     * @var \HTMLDomParser\Contracts\NodeContract[]
      */
     private $nodes;
 
@@ -55,7 +55,7 @@ class NodesCollector implements NodesCollectorContract
     /**
      * Return the current element
      *
-     * @return Node
+     * @return \HTMLDomParser\Contracts\NodeContract
      */
     public function current()
     {
