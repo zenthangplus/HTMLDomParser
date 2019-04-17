@@ -8,7 +8,7 @@ use \Iterator;
  * Interface NodesCollectorContract
  * @package HTMLDomParser\Contracts
  */
-interface NodesCollectorContract extends Iterator
+interface NodesCollectorContract extends Iterator, \Countable
 {
     /**
      * Get the number of nodes
