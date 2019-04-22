@@ -100,14 +100,38 @@ class NodeTest extends TestCase
     }
 
     /**
-     * Test get child
+     * Test node hasn't child
+     *
+     * @covers \HTMLDomParser\Node::hasChild
+     */
+    public function testNotHasChild()
+    {
+        $root = new Node('<span></span>');
+        $spanTag = $root->getFirstChild();
+        $this->assertFalse($spanTag->hasChild());
+    }
+
+    /**
+     * Test get child with correct data type
      *
      * @covers \HTMLDomParser\Node::getChild
      */
-    public function testGetChild()
+    public function testGetChildWithCorrectType()
     {
         $node = new Node('<div><a href="#">Test</a></div>');
         $this->assertInstanceOf(Node::class, $node->getChild(0));
+    }
+
+    /**
+     * Test get child with correct tag
+     *
+     * @covers \HTMLDomParser\Node::getChild
+     * @depends testGetChildWithCorrectType
+     */
+    public function testGetChildWithCorrectTag()
+    {
+        $node = new Node('<div><a href="#">Test</a></div>');
+        $this->assertEquals('div', $node->getChild(0)->getName());
     }
 
     /**
@@ -122,11 +146,22 @@ class NodeTest extends TestCase
     }
 
     /**
-     * Test get children
+     * Test get child by an index which doesn't exists
+     *
+     * @covers \HTMLDomParser\Node::getChild
+     */
+    public function testGetChildWithIndexNotExists()
+    {
+        $node = new Node('<div><a href="#">Test</a></div>');
+        $this->assertNull($node->getChild(1));
+    }
+
+    /**
+     * Test get children with correct number of children
      *
      * @covers \HTMLDomParser\Node::getChildren
      */
-    public function testGetChildren()
+    public function testGetChildrenWithCorrectNumber()
     {
         $node = new Node('<div><a href="#">Test 1</a></div><div></div>');
         $this->assertEquals(2, count($node->getChildren()));
@@ -168,6 +203,19 @@ class NodeTest extends TestCase
     }
 
     /**
+     * Test get first child that return null
+     *
+     * @covers \HTMLDomParser\Node::getFirstChild
+     * @depends testGetChildWithCorrectTag
+     */
+    public function testGetFirstChildNull()
+    {
+        $node = new Node('<span></span>');
+        $spanTag = $node->getChild(0);
+        $this->assertNull($spanTag->getFirstChild());
+    }
+
+    /**
      * Test get last child with correct data type
      *
      * @covers \HTMLDomParser\Node::getLastChild
@@ -189,5 +237,154 @@ class NodeTest extends TestCase
     {
         $node = new Node('<b>Test 1</b><strong>Test 2</strong>');
         $this->assertEquals('strong', $node->getLastChild()->getName());
+    }
+
+    /**
+     * Test get last child that return null
+     *
+     * @covers \HTMLDomParser\Node::getLastChild
+     * @depends testGetChildWithCorrectTag
+     */
+    public function testGetLastChildNull()
+    {
+        $node = new Node('<span></span>');
+        $spanTag = $node->getChild(0);
+        $this->assertNull($spanTag->getLastChild());
+    }
+
+    /**
+     * Test get parent with correct type
+     *
+     * @covers \HTMLDomParser\Node::getParent
+     * @depends testGetFirstChildWithCorrectTag
+     */
+    public function testGetParentWithCorrectType()
+    {
+        $node = new Node('<ul><li>Test 1</li><li>Test2</li></ul>');
+        $li = $node->getFirstChild()->getFirstChild();
+        $this->assertInstanceOf(Node::class, $li->getParent());
+    }
+
+    /**
+     * Test get parent with correct tag
+     *
+     * @covers \HTMLDomParser\Node::getParent
+     * @depends testGetParentWithCorrectType
+     */
+    public function testGetParentWithCorrectTag()
+    {
+        $node = new Node('<ul><li>Test 1</li><li>Test2</li></ul>');
+        $li = $node->getFirstChild()->getFirstChild();
+        $this->assertEquals('ul', $li->getParent()->getName());
+    }
+
+    /**
+     * Test set parent with correct type
+     *
+     * @covers \HTMLDomParser\Node::setParent
+     * @depends testGetParentWithCorrectTag
+     */
+    public function testSetParentWithCorrectType()
+    {
+        $root1 = new Node('<b>Test</b>');
+        $root2 = new Node('<span></span>');
+        $bTag = $root1->getFirstChild();
+        $spanTag = $root2->getFirstChild();
+        $bTag->setParent($spanTag);
+        $this->assertInstanceOf(Node::class, $bTag->getParent());
+    }
+
+    /**
+     * Test set parent with correct tag
+     *
+     * @covers \HTMLDomParser\Node::setParent
+     * @depends testGetParentWithCorrectType
+     */
+    public function testSetParentWithCorrectTag()
+    {
+        $root1 = new Node('<b>Test</b>');
+        $root2 = new Node('<span></span>');
+        $bTag = $root1->getFirstChild();
+        $spanTag = $root2->getFirstChild();
+        $bTag->setParent($spanTag);
+        $this->assertEquals('span', $bTag->getParent()->getName());
+    }
+
+    /**
+     * Test get next sibling element with correct type
+     *
+     * @covers \HTMLDomParser\Node::getNextSibling
+     * @depends testGetFirstChildWithCorrectTag
+     */
+    public function testGetNextSiblingWithCorrectType()
+    {
+        $root = new Node('<p><b>Test</b></p><div>Test</div>');
+        $pTag = $root->getFirstChild();
+        $this->assertInstanceOf(Node::class, $pTag->getNextSibling());
+    }
+
+    /**
+     * Test get next sibling element with correct tag
+     *
+     * @covers \HTMLDomParser\Node::getNextSibling
+     * @depends testGetNextSiblingWithCorrectType
+     */
+    public function testGetNextSiblingWithCorrectTag()
+    {
+        $root = new Node('<p><b>Test</b></p><div>Test</div>');
+        $pTag = $root->getFirstChild();
+        $this->assertEquals('div', $pTag->getNextSibling()->getName());
+    }
+
+    /**
+     * Test get next sibling element that return null
+     *
+     * @covers \HTMLDomParser\Node::getNextSibling
+     * @depends testGetLastChildWithCorrectTag
+     */
+    public function testGetNextSiblingNull()
+    {
+        $root = new Node('<p><b>Test</b></p><div>Test</div>');
+        $divTag = $root->getLastChild();
+        $this->assertNull($divTag->getNextSibling());
+    }
+
+    /**
+     * Test get previous sibling element with correct type
+     *
+     * @covers \HTMLDomParser\Node::getPrevSibling
+     * @depends testGetLastChildWithCorrectTag
+     */
+    public function testGetPrevSiblingWithCorrectType()
+    {
+        $root = new Node('<p><b>Test</b></p><div>Test</div>');
+        $divTag = $root->getLastChild();
+        $this->assertInstanceOf(Node::class, $divTag->getPrevSibling());
+    }
+
+    /**
+     * Test get previous sibling element with correct tag
+     *
+     * @covers \HTMLDomParser\Node::getPrevSibling
+     * @depends testGetPrevSiblingWithCorrectType
+     */
+    public function testGetPrevSiblingWithCorrectTag()
+    {
+        $root = new Node('<p><b>Test</b></p><div>Test</div>');
+        $divTag = $root->getLastChild();
+        $this->assertEquals('p', $divTag->getPrevSibling()->getName());
+    }
+
+    /**
+     * Test get previous sibling element that return null
+     *
+     * @covers \HTMLDomParser\Node::getPrevSibling
+     * @depends testGetFirstChildWithCorrectTag
+     */
+    public function testGetPrevSiblingNull()
+    {
+        $root = new Node('<p><b>Test</b></p><div>Test</div>');
+        $pTag = $root->getFirstChild();
+        $this->assertNull($pTag->getPrevSibling());
     }
 }
