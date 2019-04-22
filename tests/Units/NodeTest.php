@@ -387,4 +387,30 @@ class NodeTest extends TestCase
         $pTag = $root->getFirstChild();
         $this->assertNull($pTag->getPrevSibling());
     }
+
+    /**
+     * Test find ancestor tag with correct data type
+     *
+     * @covers \HTMLDomParser\Node::findAncestorTag
+     * @depends testGetFirstChildWithCorrectTag
+     */
+    public function testFindAncestorTagWithCorrectType()
+    {
+        $root = new Node('<div><p><b>Test</b></p></div>');
+        $bTag = $root->getFirstChild()->getFirstChild()->getFirstChild();
+        $this->assertInstanceOf(Node::class, $bTag->findAncestorTag('div'));
+    }
+
+    /**
+     * Test find ancestor tag with correct tag
+     *
+     * @covers \HTMLDomParser\Node::findAncestorTag
+     * @depends testFindAncestorTagWithCorrectType
+     */
+    public function testFindAncestorTagWithCorrectTag()
+    {
+        $root = new Node('<div><p><b>Test</b></p></div>');
+        $bTag = $root->getFirstChild()->getFirstChild()->getFirstChild();
+        $this->assertEquals('div', $bTag->findAncestorTag('div')->getName());
+    }
 }
