@@ -413,4 +413,17 @@ class NodeTest extends TestCase
         $bTag = $root->getFirstChild()->getFirstChild()->getFirstChild();
         $this->assertEquals('div', $bTag->findAncestorTag('div')->getName());
     }
+
+    /**
+     * Test find ancestor tag that return null
+     *
+     * @covers \HTMLDomParser\Node::findAncestorTag
+     * @depends testGetFirstChildWithCorrectTag
+     */
+    public function testFindAncestorTagNull()
+    {
+        $root = new Node('<div><p><b>Test</b></p></div>');
+        $bTag = $root->getFirstChild()->getFirstChild()->getFirstChild();
+        $this->assertNull($bTag->findAncestorTag('span'));
+    }
 }
