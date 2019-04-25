@@ -352,27 +352,6 @@ class Node implements NodeContract
     }
 
     /**
-     * Build node's text with tag
-     *
-     * @return string
-     */
-    public function makeup()
-    {
-        return $this->node->makeup();
-    }
-
-    /**
-     * Dump node's tree
-     *
-     * @param bool $showAttr
-     * @param int $deep
-     */
-    public function dump($showAttr = true, $deep = 0)
-    {
-        $this->node->dump($showAttr, $deep);
-    }
-
-    /**
      * Convert current node to string
      *
      * @return string

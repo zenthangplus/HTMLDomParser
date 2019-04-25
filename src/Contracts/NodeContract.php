@@ -231,23 +231,6 @@ interface NodeContract
     public function appendChild($node);
 
     /**
-     * Build node's text with tag
-     *
-     * @see \HTMLDomParser\Sources\simple_html_dom_node::makeup()
-     * @return string
-     */
-    public function makeup();
-
-    /**
-     * Dump node's tree
-     *
-     * @see \HTMLDomParser\Sources\simple_html_dom_node::dump()
-     * @param bool $showAttr
-     * @param int $deep
-     */
-    public function dump($showAttr = true, $deep = 0);
-
-    /**
      * Save current DOM to file and get html
      *
      * @see \HTMLDomParser\Sources\simple_html_dom::save()
