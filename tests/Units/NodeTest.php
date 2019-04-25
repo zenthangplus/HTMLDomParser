@@ -3,6 +3,7 @@
 namespace HTMLDomParserTests\Units;
 
 use HTMLDomParser\Node;
+use HTMLDomParser\Contracts\NodeContract;
 use HTMLDomParser\Sources\simple_html_dom;
 use HTMLDomParser\Sources\simple_html_dom_node;
 use HTMLDomParserTests\Helpers\ReflectionHelper;
@@ -97,7 +98,7 @@ class NodeTest extends TestCase
     {
         $node = new Node('<div><a href="#">Test</a></div>');
         $child = $node->getChild(0);
-        $this->assertInstanceOf(Node::class, $child);
+        $this->assertInstanceOf(NodeContract::class, $child);
         $this->assertEquals('div', $child->getName());
     }
 
@@ -133,7 +134,7 @@ class NodeTest extends TestCase
         $node = new Node('<div><a href="#">Test 1</a></div><div></div>');
         $children = $node->getChildren();
         $this->assertCount(2, $children);
-        $this->assertContainsOnlyInstancesOf(Node::class, $children);
+        $this->assertContainsOnlyInstancesOf(NodeContract::class, $children);
     }
 
     /**
@@ -146,7 +147,7 @@ class NodeTest extends TestCase
     {
         $node = new Node('<b>Test 1</b><strong>Test 2</strong>');
         $child = $node->getFirstChild();
-        $this->assertInstanceOf(Node::class, $child);
+        $this->assertInstanceOf(NodeContract::class, $child);
         $this->assertEquals('b', $child->getName());
     }
 
@@ -172,7 +173,7 @@ class NodeTest extends TestCase
     {
         $node = new Node('<b>Test 1</b><strong>Test 2</strong>');
         $child = $node->getLastChild();
-        $this->assertInstanceOf(Node::class, $child);
+        $this->assertInstanceOf(NodeContract::class, $child);
         $this->assertEquals('strong', $child->getName());
     }
 
@@ -200,7 +201,7 @@ class NodeTest extends TestCase
         $node = new Node('<ul><li>Test 1</li><li>Test2</li></ul>');
         $li = $node->getFirstChild()->getFirstChild();
         $parent = $li->getParent();
-        $this->assertInstanceOf(Node::class, $parent);
+        $this->assertInstanceOf(NodeContract::class, $parent);
         $this->assertEquals('ul', $parent->getName());
     }
 
@@ -219,7 +220,7 @@ class NodeTest extends TestCase
         $spanTag = $root2->getFirstChild();
         $bTag->setParent($spanTag);
         $parent = $bTag->getParent();
-        $this->assertInstanceOf(Node::class, $parent);
+        $this->assertInstanceOf(NodeContract::class, $parent);
         $this->assertEquals('span', $parent->getName());
 
     }
@@ -236,7 +237,7 @@ class NodeTest extends TestCase
         $root = new Node('<p><b>Test</b></p><div>Test</div>');
         $pTag = $root->getFirstChild();
         $nexSibling = $pTag->getNextSibling();
-        $this->assertInstanceOf(Node::class, $nexSibling);
+        $this->assertInstanceOf(NodeContract::class, $nexSibling);
         $this->assertEquals('div', $nexSibling->getName());
     }
 
@@ -265,7 +266,7 @@ class NodeTest extends TestCase
         $root = new Node('<p><b>Test</b></p><div>Test</div>');
         $divTag = $root->getLastChild();
         $prevSibling = $divTag->getPrevSibling();
-        $this->assertInstanceOf(Node::class, $prevSibling);
+        $this->assertInstanceOf(NodeContract::class, $prevSibling);
         $this->assertEquals('p', $prevSibling->getName());
     }
 
@@ -294,7 +295,7 @@ class NodeTest extends TestCase
         $root = new Node('<div><p><b>Test</b></p></div>');
         $bTag = $root->getFirstChild()->getFirstChild()->getFirstChild();
         $element = $bTag->findAncestorTag('div');
-        $this->assertInstanceOf(Node::class, $element);
+        $this->assertInstanceOf(NodeContract::class, $element);
         $this->assertEquals('div', $element->getName());
 
     }
@@ -322,7 +323,7 @@ class NodeTest extends TestCase
         $root = new Node('<div id="wrapper"><b>Test</b></div>');
         $elements = $root->find('#wrapper');
         $this->assertCount(1, $elements);
-        $this->assertContainsOnlyInstancesOf(Node::class, $elements);
+        $this->assertContainsOnlyInstancesOf(NodeContract::class, $elements);
     }
 
     /**
@@ -335,7 +336,7 @@ class NodeTest extends TestCase
         $root = new Node('<div class="test"><div class="test">Test<span class="test">Test 1</span></div></div>');
         $elements = $root->find('.test');
         $this->assertCount(3, $elements);
-        $this->assertContainsOnlyInstancesOf(Node::class, $elements);
+        $this->assertContainsOnlyInstancesOf(NodeContract::class, $elements);
     }
 
     /**
@@ -348,7 +349,7 @@ class NodeTest extends TestCase
         $root = new Node('<div id="wrapper"><b>Test 1</b><b>Test 2</b><b>Test 3</b></div>');
         $elements = $root->find('b');
         $this->assertCount(3, $elements);
-        $this->assertContainsOnlyInstancesOf(Node::class, $elements);
+        $this->assertContainsOnlyInstancesOf(NodeContract::class, $elements);
     }
 
     /**
@@ -361,7 +362,7 @@ class NodeTest extends TestCase
         $root = new Node('<div id="wrapper"><ul class="list"><li>Item 1</li><li>Item 2</li></ul></div>');
         $elements = $root->find('#wrapper ul.list>li');
         $this->assertCount(2, $elements);
-        $this->assertContainsOnlyInstancesOf(Node::class, $elements);
+        $this->assertContainsOnlyInstancesOf(NodeContract::class, $elements);
     }
 
     /**
@@ -385,7 +386,7 @@ class NodeTest extends TestCase
     {
         $root = new Node('<div id="wrapper"><ul class="list"><li>Item 1</li><li>Item 2</li></ul></div>');
         $element = $root->findOne('#wrapper .list li');
-        $this->assertInstanceOf(Node::class, $element);
+        $this->assertInstanceOf(NodeContract::class, $element);
         $this->assertEquals('Item 1', $element->text());
     }
 
@@ -410,7 +411,7 @@ class NodeTest extends TestCase
     {
         $root = new Node('<div class="container"><ul><li>Item 1</li><li id="item-2">Item 2</li></ul></div>');
         $element = $root->getElementById('item-2');
-        $this->assertInstanceOf(Node::class, $element);
+        $this->assertInstanceOf(NodeContract::class, $element);
         $this->assertEquals('Item 2', $element->text());
     }
 
@@ -435,7 +436,7 @@ class NodeTest extends TestCase
     {
         $root = new Node('<div class="container"><ul><li>Item 1</li><li id="item-2">Item 2</li></ul></div>');
         $element = $root->getElementByTagName('li');
-        $this->assertInstanceOf(Node::class, $element);
+        $this->assertInstanceOf(NodeContract::class, $element);
         $this->assertEquals('Item 1', $element->text());
     }
 
@@ -461,7 +462,7 @@ class NodeTest extends TestCase
         $root = new Node('<div class="container"><ul><li>Item 1</li><li id="item-2">Item 2</li></ul></div>');
         $elements = $root->getElementsByTagName('li');
         $this->assertCount(2, $elements);
-        $this->assertContainsOnlyInstancesOf(Node::class, $elements);
+        $this->assertContainsOnlyInstancesOf(NodeContract::class, $elements);
     }
 
     /**
@@ -687,7 +688,7 @@ class NodeTest extends TestCase
     {
         $node = new Node('<b>Test</b>');
         $val = $this->invokeStaticMethod(Node::class, 'nullOrNode', array($node->getSimpleNode()));
-        $this->assertInstanceOf(Node::class, $val);
+        $this->assertInstanceOf(NodeContract::class, $val);
     }
 
     /**
