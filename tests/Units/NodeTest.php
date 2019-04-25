@@ -155,14 +155,14 @@ class NodeTest extends TestCase
     {
         $node = new Node('<div><a href="#">Test 1</a></div><div></div>');
         $children = $node->getChildren();
-        $this->assertEquals(2, count($children));
+        $this->assertCount(2, $children);
         $this->assertContainsOnlyInstancesOf(Node::class, $children);
     }
 
     /**
      * Test get first child
      *
-     * @covers \HTMLDomParser\Node::getFirstChild
+     * @covers  \HTMLDomParser\Node::getFirstChild
      * @depends testGetNodeName
      */
     public function testGetFirstChild()
@@ -188,7 +188,7 @@ class NodeTest extends TestCase
     /**
      * Test get last child
      *
-     * @covers \HTMLDomParser\Node::getLastChild
+     * @covers  \HTMLDomParser\Node::getLastChild
      * @depends testGetNodeName
      */
     public function testGetLastChild()
@@ -214,7 +214,7 @@ class NodeTest extends TestCase
     /**
      * Test get parent
      *
-     * @covers \HTMLDomParser\Node::getParent
+     * @covers  \HTMLDomParser\Node::getParent
      * @depends testGetFirstChild
      * @depends testGetNodeName
      */
@@ -230,7 +230,7 @@ class NodeTest extends TestCase
     /**
      * Test set parent
      *
-     * @covers \HTMLDomParser\Node::setParent
+     * @covers  \HTMLDomParser\Node::setParent
      * @depends testGetParent
      * @depends testGetNodeName
      */
@@ -250,7 +250,7 @@ class NodeTest extends TestCase
     /**
      * Test get next sibling element
      *
-     * @covers \HTMLDomParser\Node::getNextSibling
+     * @covers  \HTMLDomParser\Node::getNextSibling
      * @depends testGetFirstChild
      * @depends testGetNodeName
      */
@@ -266,7 +266,7 @@ class NodeTest extends TestCase
     /**
      * Test get next sibling element that return null
      *
-     * @covers \HTMLDomParser\Node::getNextSibling
+     * @covers  \HTMLDomParser\Node::getNextSibling
      * @depends testGetLastChild
      */
     public function testGetNextSiblingNull()
@@ -279,7 +279,7 @@ class NodeTest extends TestCase
     /**
      * Test get previous sibling element
      *
-     * @covers \HTMLDomParser\Node::getPrevSibling
+     * @covers  \HTMLDomParser\Node::getPrevSibling
      * @depends testGetLastChild
      * @depends testGetNodeName
      */
@@ -295,7 +295,7 @@ class NodeTest extends TestCase
     /**
      * Test get previous sibling element that return null
      *
-     * @covers \HTMLDomParser\Node::getPrevSibling
+     * @covers  \HTMLDomParser\Node::getPrevSibling
      * @depends testGetFirstChild
      */
     public function testGetPrevSiblingNull()
@@ -308,7 +308,7 @@ class NodeTest extends TestCase
     /**
      * Test find ancestor tag
      *
-     * @covers \HTMLDomParser\Node::findAncestorTag
+     * @covers  \HTMLDomParser\Node::findAncestorTag
      * @depends testGetFirstChild
      * @depends testGetNodeName
      */
@@ -325,7 +325,7 @@ class NodeTest extends TestCase
     /**
      * Test find ancestor tag that return null
      *
-     * @covers \HTMLDomParser\Node::findAncestorTag
+     * @covers  \HTMLDomParser\Node::findAncestorTag
      * @depends testFindAncestorTag
      */
     public function testFindAncestorTagNull()
@@ -333,5 +333,169 @@ class NodeTest extends TestCase
         $root = new Node('<div><p><b>Test</b></p></div>');
         $bTag = $root->getFirstChild()->getFirstChild()->getFirstChild();
         $this->assertNull($bTag->findAncestorTag('span'));
+    }
+
+    /**
+     * Test find elements by ID
+     *
+     * @covers \HTMLDomParser\Node::find
+     */
+    public function testFindById()
+    {
+        $root = new Node('<div id="wrapper"><b>Test</b></div>');
+        $elements = $root->find('#wrapper');
+        $this->assertCount(1, $elements);
+        $this->assertContainsOnlyInstancesOf(Node::class, $elements);
+    }
+
+    /**
+     * Test find elements by class name
+     *
+     * @covers \HTMLDomParser\Node::find
+     */
+    public function testFindByClass()
+    {
+        $root = new Node('<div class="test"><div class="test">Test<span class="test">Test 1</span></div></div>');
+        $elements = $root->find('.test');
+        $this->assertCount(3, $elements);
+        $this->assertContainsOnlyInstancesOf(Node::class, $elements);
+    }
+
+    /**
+     * Test find elements by tag name
+     *
+     * @covers \HTMLDomParser\Node::find
+     */
+    public function testFindByTagName()
+    {
+        $root = new Node('<div id="wrapper"><b>Test 1</b><b>Test 2</b><b>Test 3</b></div>');
+        $elements = $root->find('b');
+        $this->assertCount(3, $elements);
+        $this->assertContainsOnlyInstancesOf(Node::class, $elements);
+    }
+
+    /**
+     * Test find elements by css selector
+     *
+     * @covers \HTMLDomParser\Node::find
+     */
+    public function testFindComplex()
+    {
+        $root = new Node('<div id="wrapper"><ul class="list"><li>Item 1</li><li>Item 2</li></ul></div>');
+        $elements = $root->find('#wrapper ul.list>li');
+        $this->assertCount(2, $elements);
+        $this->assertContainsOnlyInstancesOf(Node::class, $elements);
+    }
+
+    /**
+     * Test find elements that doesn't exists
+     *
+     * @covers \HTMLDomParser\Node::find
+     */
+    public function testFindNotExists()
+    {
+        $root = new Node('<div id="wrapper"><b>Test</b></div>');
+        $elements = $root->find('.container');
+        $this->assertCount(0, $elements);
+    }
+
+    /**
+     * Test find one element
+     *
+     * @covers \HTMLDomParser\Node::findOne
+     */
+    public function testFindOne()
+    {
+        $root = new Node('<div id="wrapper"><ul class="list"><li>Item 1</li><li>Item 2</li></ul></div>');
+        $element = $root->findOne('#wrapper .list li');
+        $this->assertInstanceOf(Node::class, $element);
+        $this->assertEquals('Item 1', $element->text());
+    }
+
+    /**
+     * Test find one element that doesn't exists
+     *
+     * @covers \HTMLDomParser\Node::findOne
+     */
+    public function testFindOneNotExists()
+    {
+        $root = new Node('<div id="wrapper"><ul class="list"><li>Item 1</li><li>Item 2</li></ul></div>');
+        $element = $root->findOne('.container #wrapper');
+        $this->assertNull($element);
+    }
+
+    /**
+     * Test get element by ID
+     *
+     * @covers \HTMLDomParser\Node::getElementById
+     */
+    public function testGetElementById()
+    {
+        $root = new Node('<div class="container"><ul><li>Item 1</li><li id="item-2">Item 2</li></ul></div>');
+        $element = $root->getElementById('item-2');
+        $this->assertInstanceOf(Node::class, $element);
+        $this->assertEquals('Item 2', $element->text());
+    }
+
+    /**
+     * Test get element by ID that doesn't exists
+     *
+     * @covers \HTMLDomParser\Node::getElementById
+     */
+    public function testGetElementByIdNotExists()
+    {
+        $root = new Node('<div class="container"><ul><li>Item 1</li><li id="item-2">Item 2</li></ul></div>');
+        $element = $root->getElementById('item-1');
+        $this->assertNull($element);
+    }
+
+    /**
+     * Test get a element by tag name
+     *
+     * @covers \HTMLDomParser\Node::getElementByTagName
+     */
+    public function testGetElementByTagName()
+    {
+        $root = new Node('<div class="container"><ul><li>Item 1</li><li id="item-2">Item 2</li></ul></div>');
+        $element = $root->getElementByTagName('li');
+        $this->assertInstanceOf(Node::class, $element);
+        $this->assertEquals('Item 1', $element->text());
+    }
+
+    /**
+     * Test get a element by tag name that doesn't exists
+     *
+     * @covers \HTMLDomParser\Node::getElementByTagName
+     */
+    public function testGetElementByTagNameNotExists()
+    {
+        $root = new Node('<div class="container"><ul><li>Item 1</li><li id="item-2">Item 2</li></ul></div>');
+        $element = $root->getElementByTagName('a');
+        $this->assertNull($element);
+    }
+
+    /**
+     * Test get elements by tag name
+     *
+     * @covers \HTMLDomParser\Node::getElementsByTagName
+     */
+    public function testGetElementsByTagName()
+    {
+        $root = new Node('<div class="container"><ul><li>Item 1</li><li id="item-2">Item 2</li></ul></div>');
+        $elements = $root->getElementsByTagName('li');
+        $this->assertCount(2, $elements);
+        $this->assertContainsOnlyInstancesOf(Node::class, $elements);
+    }
+
+    /**
+     * Test get elements by tag name that doesn't exists
+     *
+     * @covers \HTMLDomParser\Node::getElementsByTagName
+     */
+    public function testGetElementsByTagNameNotExists()
+    {
+        $root = new Node('<div class="container"><ul><li>Item 1</li><li id="item-2">Item 2</li></ul></div>');
+        $elements = $root->getElementsByTagName('a');
+        $this->assertCount(0, $elements);
     }
 }
