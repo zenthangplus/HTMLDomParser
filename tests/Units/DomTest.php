@@ -18,10 +18,6 @@ class DomTest extends TestCase
 {
     use ReflectionHelper;
 
-    public $filepath = 'fixtures/document.html';
-
-    public $html = '<div id="test"><a href="#">Test link</a></div>';
-
     /**
      * @var Dom
      */
@@ -33,7 +29,7 @@ class DomTest extends TestCase
     public function setUp()
     {
         $this->dom = new Dom();
-        $this->dom->loadFile(dirname(__FILE__) . '/' . $this->filepath);
+        $this->dom->loadFile(dirname(__FILE__) . '/fixtures/document.html');
     }
 
     /**
@@ -63,7 +59,7 @@ class DomTest extends TestCase
      */
     public function testLoadDomByString()
     {
-        $dom = new Dom($this->html);
+        $dom = new Dom('<a href="#">Test</a>');
         $this->assertInstanceOf(simple_html_dom_node::class, $dom->getSimpleNode());
     }
 
@@ -75,7 +71,7 @@ class DomTest extends TestCase
      */
     public function testLoadDomFromObject()
     {
-        $object = new simple_html_dom($this->html);
+        $object = new simple_html_dom('<a href="#">Test</a>');
         $dom = new Dom($object);
         $this->assertInstanceOf(simple_html_dom_node::class, $dom->getSimpleNode());
     }

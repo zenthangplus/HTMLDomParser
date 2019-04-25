@@ -2,7 +2,6 @@
 
 namespace HTMLDomParserTests\Units;
 
-use HTMLDomParser\Contracts\NodeContract;
 use HTMLDomParser\Node;
 use HTMLDomParser\Sources\simple_html_dom;
 use HTMLDomParser\Sources\simple_html_dom_node;
@@ -14,32 +13,6 @@ use PHPUnit\Framework\TestCase;
  */
 class NodeTest extends TestCase
 {
-    public $filepath = 'fixtures/document.html';
-
-    public $html = '<div id="test"><a href="#">Test link</a></div>';
-
-    /**
-     * @var NodeContract
-     */
-    public $node;
-
-    /**
-     * Init resources for this tests
-     */
-    public function setUp()
-    {
-        $this->node = new Node();
-        $this->node->loadFile(dirname(__FILE__) . '/' . $this->filepath);
-    }
-
-    /**
-     * Destroy resources after test finished
-     */
-    public function tearDown()
-    {
-        unset($this->node);
-    }
-
     /**
      * Test load Node from file
      *
@@ -48,7 +21,9 @@ class NodeTest extends TestCase
      */
     public function testLoadNodeFromFile()
     {
-        $this->assertInstanceOf(simple_html_dom_node::class, $this->node->getSimpleNode());
+        $node = new Node();
+        $node->loadFile($this->getFixturesPath('document.html'));
+        $this->assertInstanceOf(simple_html_dom_node::class, $node->getSimpleNode());
     }
 
     /**
@@ -60,7 +35,7 @@ class NodeTest extends TestCase
     public function testLoadNodeFromString()
     {
         $node = new Node();
-        $node->load($this->html);
+        $node->load('<a href="#">Test</a>');
         $this->assertInstanceOf(simple_html_dom_node::class, $node->getSimpleNode());
     }
 
@@ -72,7 +47,7 @@ class NodeTest extends TestCase
      */
     public function testLoadNodeFromObject()
     {
-        $object = new simple_html_dom($this->html);
+        $object = new simple_html_dom('<a href="#">Test</a>');
         $node = new Node($object->root);
         $this->assertInstanceOf(simple_html_dom_node::class, $node->getSimpleNode());
     }
@@ -497,5 +472,207 @@ class NodeTest extends TestCase
         $root = new Node('<div class="container"><ul><li>Item 1</li><li id="item-2">Item 2</li></ul></div>');
         $elements = $root->getElementsByTagName('a');
         $this->assertCount(0, $elements);
+    }
+
+    /**
+     * Test get inner html
+     *
+     * @covers  \HTMLDomParser\Node::innerHtml
+     * @depends testGetFirstChild
+     */
+    public function testGetInnerHtml()
+    {
+        $root = new Node('<div id="wrapper"><b>Test</b></div>');
+        $wrapper = $root->getFirstChild();
+        $this->assertEquals('<b>Test</b>', $wrapper->innerHtml());
+    }
+
+    /**
+     * Test get inner xml
+     *
+     * @covers  \HTMLDomParser\Node::innerXml
+     * @depends testGetFirstChild
+     */
+    public function testGetInnerXml()
+    {
+        $root = new Node('<div id="wrapper"><![CDATA[<b>Test</b>]]></div>');
+        $wrapper = $root->getFirstChild();
+        $this->assertEquals('<b>Test</b>', $wrapper->innerXml());
+    }
+
+    /**
+     * Test get outer html
+     *
+     * @covers  \HTMLDomParser\Node::outerHtml
+     * @depends testGetFirstChild
+     */
+    public function testGetOuterHtml()
+    {
+        $root = new Node('<div id="wrapper"><b>Test</b></div>');
+        $bTag = $root->getFirstChild()->getFirstChild();
+        $this->assertEquals('<b>Test</b>', $bTag->outerHtml());
+    }
+
+    /**
+     * Test get inner text
+     *
+     * @covers  \HTMLDomParser\Node::text
+     * @depends testGetFirstChild
+     */
+    public function testGetText()
+    {
+        $root = new Node('<div id="wrapper">This is <b>test</b> text</div>');
+        $wrapper = $root->getFirstChild();
+        $this->assertEquals('This is test text', $wrapper->text());
+    }
+
+    /**
+     * Test get attribute by name
+     *
+     * @covers  \HTMLDomParser\Node::getAttribute
+     * @depends testGetFirstChild
+     */
+    public function testGetAttribute()
+    {
+        $root = new Node('<a href="#" class="test">Test</a>');
+        $anchor = $root->getFirstChild();
+        $this->assertEquals('#', $anchor->getAttribute('href'));
+    }
+
+    /**
+     * Test set attribute for a element
+     *
+     * @covers  \HTMLDomParser\Node::setAttribute
+     * @depends testGetFirstChild
+     * @depends testGetAttribute
+     * @depends testGetOuterHtml
+     */
+    public function testSetAttribute()
+    {
+        $root = new Node('<a href="#">Test</a>');
+        $anchor = $root->getFirstChild();
+        $anchor->setAttribute('class', 'test');
+        $this->assertEquals('test', $anchor->getAttribute('class'));
+        $this->assertEquals('#', $anchor->getAttribute('href'));
+        $this->assertEquals('<a href="#" class="test">Test</a>', $anchor->outerHtml());
+    }
+
+    /**
+     * Test get all attribute of a element
+     *
+     * @covers  \HTMLDomParser\Node::getAttributes
+     * @depends testGetFirstChild
+     */
+    public function testGetAttributes()
+    {
+        $root = new Node('<a href="#" class="test">Test</a>');
+        $anchor = $root->getFirstChild();
+        $this->assertEquals(['href' => '#', 'class' => 'test'], $anchor->getAttributes());
+    }
+
+    /**
+     * Test check element has attribute
+     *
+     * @covers  \HTMLDomParser\Node::hasAttribute
+     * @depends testGetFirstChild
+     */
+    public function testHasAttribute()
+    {
+        $root = new Node('<a href="#" class="test">Test</a>');
+        $anchor = $root->getFirstChild();
+        $this->assertTrue($anchor->hasAttribute('class'));
+        $this->assertFalse($anchor->hasAttribute('title'));
+    }
+
+    /**
+     * Test remove attribute of a element
+     *
+     * @covers  \HTMLDomParser\Node::removeAttribute
+     * @depends testGetFirstChild
+     * @depends testGetAttribute
+     * @depends testGetOuterHtml
+     */
+    public function testRemoveAttribute()
+    {
+        $root = new Node('<a href="#" class="test">Test</a>');
+        $anchor = $root->getFirstChild();
+        $anchor->removeAttribute('class');
+        $this->assertEmpty($anchor->getAttribute('class'));
+        $this->assertEquals('<a href="#">Test</a>', $anchor->outerHtml());
+    }
+
+    /**
+     * Test append a element to other element
+     *
+     * @covers  \HTMLDomParser\Node::appendChild
+     * @depends testGetOuterHtml
+     */
+    public function testAppendChild()
+    {
+        $root = new Node('<b>Test 1</b>');
+        $element = new Node('<b>Test 2</b>');
+        $root->appendChild($element);
+        $this->assertEquals('<b>Test 1</b><b>Test 2</b>', $root->outerHtml());
+    }
+
+    /**
+     * Test cast node to string
+     *
+     * @covers \HTMLDomParser\Node::__toString
+     */
+    public function testToString()
+    {
+        $root = new Node('<b>Test 1</b>');
+        $this->assertEquals('<b>Test 1</b>', (string)$root);
+    }
+
+    /**
+     * Test save node to a html file
+     *
+     * @covers \HTMLDomParser\Node::save
+     */
+    public function testSave()
+    {
+        $html = '<div class="container"><b>Test 1</b></div>';
+        $filepath = $this->getFixturesPath('tmp/tmp.html');
+        $root = new Node($html);
+        $root->save($filepath);
+        $this->assertEquals($html, file_get_contents($filepath));
+    }
+
+    /**
+     * Test get simple node
+     *
+     * @covers \HTMLDomParser\Node::getSimpleNode
+     */
+    public function testGetSimpleNode()
+    {
+        $root = new Node('<b>Test</b>');
+        $this->assertInstanceOf(simple_html_dom_node::class, $root->getSimpleNode());
+    }
+
+    /**
+     * Get fixtures path for these tests
+     *
+     * @param string $file
+     * @return string
+     */
+    protected function getFixturesPath($file)
+    {
+        return dirname(__FILE__) . '/fixtures/' . $file;
+    }
+
+    /**
+     * Destroy resources after test finished
+     */
+    public function tearDown()
+    {
+        // Remove all tmp files
+        $files = glob($this->getFixturesPath('tmp') . '/*');
+        foreach ($files as $file) {
+            if (is_file($file)) {
+                @unlink($file);
+            }
+        }
     }
 }
