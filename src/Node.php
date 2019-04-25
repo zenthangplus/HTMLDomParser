@@ -46,7 +46,7 @@ class Node implements NodeContract
      */
     public function load($html)
     {
-        $dom = $this->newSimpleDom();
+        $dom = self::newSimpleDom();
         $dom->load($html);
         $this->loadObject($dom->root);
     }
@@ -58,7 +58,7 @@ class Node implements NodeContract
      */
     public function loadFile($htmlFile)
     {
-        $dom = $this->newSimpleDom();
+        $dom = self::newSimpleDom();
         $dom->load_file($htmlFile);
         $this->loadObject($dom->root);
     }
@@ -90,7 +90,7 @@ class Node implements NodeContract
      */
     public function getParent()
     {
-        return $this->nullOrNode($this->node->parent());
+        return self::nullOrNode($this->node->parent());
     }
 
     /**
@@ -124,7 +124,7 @@ class Node implements NodeContract
         if ($idx < 0) {
             return null;
         }
-        return $this->nullOrNode($this->node->children($idx));
+        return self::nullOrNode($this->node->children($idx));
     }
 
     /**
@@ -144,7 +144,7 @@ class Node implements NodeContract
      */
     public function getFirstChild()
     {
-        return $this->nullOrNode($this->node->first_child());
+        return self::nullOrNode($this->node->first_child());
     }
 
     /**
@@ -154,7 +154,7 @@ class Node implements NodeContract
      */
     public function getLastChild()
     {
-        return $this->nullOrNode($this->node->last_child());
+        return self::nullOrNode($this->node->last_child());
     }
 
     /**
@@ -164,7 +164,7 @@ class Node implements NodeContract
      */
     public function getNextSibling()
     {
-        return $this->nullOrNode($this->node->next_sibling());
+        return self::nullOrNode($this->node->next_sibling());
     }
 
     /**
@@ -174,7 +174,7 @@ class Node implements NodeContract
      */
     public function getPrevSibling()
     {
-        return $this->nullOrNode($this->node->prev_sibling());
+        return self::nullOrNode($this->node->prev_sibling());
     }
 
     /**
@@ -185,7 +185,7 @@ class Node implements NodeContract
      */
     public function findAncestorTag($tag)
     {
-        return $this->nullOrNode($this->node->find_ancestor_tag($tag));
+        return self::nullOrNode($this->node->find_ancestor_tag($tag));
     }
 
     /**
@@ -210,7 +210,7 @@ class Node implements NodeContract
      */
     public function findOne($selector, $lowercase = false)
     {
-        return $this->nullOrNode($this->node->find($selector, 0, $lowercase));
+        return self::nullOrNode($this->node->find($selector, 0, $lowercase));
     }
 
     /**
@@ -221,7 +221,7 @@ class Node implements NodeContract
      */
     public function getElementById($id)
     {
-        return $this->nullOrNode($this->node->getElementById($id));
+        return self::nullOrNode($this->node->getElementById($id));
     }
 
     /**
@@ -387,27 +387,27 @@ class Node implements NodeContract
     }
 
     /**
-     * Create new simple_html_dom instance
-     *
-     * @return simple_html_dom
-     */
-    protected function newSimpleDom()
-    {
-        return new simple_html_dom();
-    }
-
-    /**
      * If element is null, return null
      * else return new Node
      *
      * @param $element
      * @return NodeContract|null
      */
-    private function nullOrNode($element)
+    protected static function nullOrNode($element)
     {
         if (is_null($element)) {
             return null;
         }
         return new Node($element);
+    }
+
+    /**
+     * Create new simple_html_dom instance
+     *
+     * @return simple_html_dom
+     */
+    protected static function newSimpleDom()
+    {
+        return new simple_html_dom();
     }
 }

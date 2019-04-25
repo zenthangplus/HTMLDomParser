@@ -45,7 +45,7 @@ class Dom extends Node implements DomContract
      */
     public function load($html)
     {
-        $dom = $this->newSimpleDom();
+        $dom = parent::newSimpleDom();
         $dom->load($html);
         $this->loadObject($dom);
     }
@@ -57,7 +57,7 @@ class Dom extends Node implements DomContract
      */
     public function loadFile($htmlFile)
     {
-        $dom = $this->newSimpleDom();
+        $dom = parent::newSimpleDom();
         $dom->load_file($htmlFile);
         $this->loadObject($dom);
     }
