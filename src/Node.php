@@ -295,7 +295,8 @@ class Node implements NodeContract
      */
     public function getAttribute($name)
     {
-        return $this->node->getAttribute($name);
+        $value = $this->node->getAttribute($name);
+        return is_bool($value) ? '' : $value;
     }
 
     /**
