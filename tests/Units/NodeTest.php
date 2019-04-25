@@ -37,8 +37,7 @@ class NodeTest extends TestCase
      */
     public function testLoadNodeFromString()
     {
-        $node = new Node();
-        $node->load('<a href="#">Test</a>');
+        $node = new Node('<a href="#">Test</a>');
         $this->assertInstanceOf(simple_html_dom_node::class, $node->getSimpleNode());
     }
 
