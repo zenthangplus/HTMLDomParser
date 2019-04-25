@@ -5,6 +5,7 @@ namespace HTMLDomParserTests\Units;
 use HTMLDomParser\Node;
 use HTMLDomParser\Sources\simple_html_dom;
 use HTMLDomParser\Sources\simple_html_dom_node;
+use HTMLDomParserTests\Helpers\ReflectionHelper;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -13,6 +14,8 @@ use PHPUnit\Framework\TestCase;
  */
 class NodeTest extends TestCase
 {
+    use ReflectionHelper;
+
     /**
      * Test load Node from file
      *
@@ -649,6 +652,43 @@ class NodeTest extends TestCase
     {
         $root = new Node('<b>Test</b>');
         $this->assertInstanceOf(simple_html_dom_node::class, $root->getSimpleNode());
+    }
+
+    /**
+     * Test create new simple DOM
+     *
+     * @covers \HTMLDomParser\Node::newSimpleDom
+     * @throws \ReflectionException
+     */
+    public function testNewSimpleDom()
+    {
+        $simpleDom = $this->invokeStaticMethod(Node::class, 'newSimpleDom');
+        $this->assertInstanceOf(simple_html_dom::class, $simpleDom);
+    }
+
+    /**
+     * Test method nullOrNode that return null
+     *
+     * @covers \HTMLDomParser\Node::nullOrNode
+     * @throws \ReflectionException
+     */
+    public function testNullOrNodeReturnNull()
+    {
+        $val = $this->invokeStaticMethod(Node::class, 'nullOrNode', array(null));
+        $this->assertNull($val);
+    }
+
+    /**
+     * Test method nullOrNode that return a Node
+     *
+     * @covers \HTMLDomParser\Node::nullOrNode
+     * @throws \ReflectionException
+     */
+    public function testNullOrNodeReturnNode()
+    {
+        $node = new Node('<b>Test</b>');
+        $val = $this->invokeStaticMethod(Node::class, 'nullOrNode', array($node->getSimpleNode()));
+        $this->assertInstanceOf(Node::class, $val);
     }
 
     /**

@@ -26,6 +26,23 @@ trait ReflectionHelper
     }
 
     /**
+     * Call static method of a class
+     *
+     * @param $className
+     * @param $methodName
+     * @param array $parameters
+     * @return mixed
+     * @throws \ReflectionException
+     */
+    public function invokeStaticMethod($className, $methodName, $parameters = array())
+    {
+        $reflection = new \ReflectionClass($className);
+        $method = $reflection->getMethod($methodName);
+        $method->setAccessible(true);
+        return $method->invokeArgs($reflection, $parameters);
+    }
+
+    /**
      * Get invisible property value of a class
      *
      * @param $object
