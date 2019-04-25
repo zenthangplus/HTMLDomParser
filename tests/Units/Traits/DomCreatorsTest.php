@@ -40,7 +40,7 @@ class DomCreatorsTest extends TestCase
     /**
      * Test create Dom with a file
      *
-     * @covers \HTMLDomParser\Traits\DomCreators::create
+     * @covers \HTMLDomParser\Traits\DomCreators::createFromFile
      */
     public function testCreateFromFile()
     {

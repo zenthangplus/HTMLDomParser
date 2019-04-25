@@ -40,7 +40,7 @@ class NodeCreatorsTest extends TestCase
     /**
      * Test create Node with a file
      *
-     * @covers \HTMLDomParser\Traits\NodeCreators::create
+     * @covers \HTMLDomParser\Traits\NodeCreators::createFromFile
      */
     public function testCreateFromFile()
     {
