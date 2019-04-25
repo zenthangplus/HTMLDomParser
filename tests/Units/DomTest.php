@@ -2,12 +2,12 @@
 
 namespace HTMLDomParserTests\Units;
 
-use PHPUnit\Framework\TestCase;
 use HTMLDomParser\Dom;
-use HTMLDomParser\Node;
+use HTMLDomParser\Contracts\NodeContract;
 use HTMLDomParser\Sources\simple_html_dom;
 use HTMLDomParser\Sources\simple_html_dom_node;
 use HTMLDomParserTests\Helpers\ReflectionHelper;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class DomTest
@@ -122,6 +122,6 @@ class DomTest extends TestCase
             $nodeCalled = $node;
         });
         $_ = (string)$dom;
-        $this->assertInstanceOf(Node::class, $nodeCalled);
+        $this->assertInstanceOf(NodeContract::class, $nodeCalled);
     }
 }
