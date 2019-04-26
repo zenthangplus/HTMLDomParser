@@ -55,6 +55,8 @@ class NodesCollectorTest extends TestCase
     }
 
     /**
+     * Test constructor function
+     *
      * @throws \ReflectionException
      */
     public function testConstructor()
