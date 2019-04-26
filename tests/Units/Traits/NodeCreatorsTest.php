@@ -34,7 +34,7 @@ class NodeCreatorsTest extends TestCase
      */
     public function testCreate()
     {
-        $this->assertInstanceOf(NodeContract::class, ($this->mock)::create('<b>Test</b>'));
+        $this->assertInstanceOf(NodeContract::class, $this->mock->create('<b>Test</b>'));
     }
 
     /**
@@ -45,6 +45,6 @@ class NodeCreatorsTest extends TestCase
     public function testCreateFromFile()
     {
         $filepath = dirname(__FILE__) . '/../fixtures/document.html';
-        $this->assertInstanceOf(NodeContract::class, ($this->mock)::createFromFile($filepath));
+        $this->assertInstanceOf(NodeContract::class, $this->mock->createFromFile($filepath));
     }
 }

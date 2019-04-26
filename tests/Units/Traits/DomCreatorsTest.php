@@ -34,7 +34,7 @@ class DomCreatorsTest extends TestCase
      */
     public function testCreate()
     {
-        $this->assertInstanceOf(DomContract::class, ($this->mock)::create('<b>Test</b>'));
+        $this->assertInstanceOf(DomContract::class, $this->mock->create('<b>Test</b>'));
     }
 
     /**
@@ -45,6 +45,6 @@ class DomCreatorsTest extends TestCase
     public function testCreateFromFile()
     {
         $filepath = dirname(__FILE__) . '/../fixtures/document.html';
-        $this->assertInstanceOf(DomContract::class, ($this->mock)::createFromFile($filepath));
+        $this->assertInstanceOf(DomContract::class, $this->mock->createFromFile($filepath));
     }
 }
