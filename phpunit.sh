@@ -12,11 +12,11 @@ then
     exit
 fi
 
-if ! [[ $phpVersion =~ ^[0-9]\.[0-9]+$ ]]
+if ! [[ ${phpVersion} =~ ^[0-9]\.[0-9]+$ ]]
 then
     echo "Invalid PHP version, please select a right format. Example: 5.6, 7.2"
     exit
 fi
 
 echo "Select PHP $phpVersion to run PHPUnit"
-docker run --rm -v $(pwd):/var/www -w /var/www php:$phpVersion vendor/bin/phpunit
+docker run --rm -v $(pwd):/var/www -w /var/www php:${phpVersion} vendor/bin/phpunit
