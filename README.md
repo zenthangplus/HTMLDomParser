@@ -29,6 +29,8 @@ The following example is a fast and simple usage of the package:
 
 ```php
 require "vendor/autoload.php";
+use HTMLDomParser\Dom;
+
 $dom = Dom::create('<div class="container"><div class="anchor"><a href="#">Test</a></div></div>');
 $a = $dom->findOne('.container a');
 echo $a->text();
