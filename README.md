@@ -12,3 +12,9 @@ You can install by using [Composer](https://getcomposer.org/) and import to your
 - Extract contents from HTML in a single line.
 - Export elements or a special node to a single file.
 - Supports HTML document with invalid structure.
+
+## Install
+
+You can use [Composer](https://getcomposer.org/) to install this package to your project by running ``` composer require zenthangplus/html-dom-parser ```.
+
+**The minimum PHP version requirement is 5.6**. If you are using PHP < 5.6, please use [the original version](https://simplehtmldom.sourceforge.io/).
