@@ -1,7 +1,8 @@
 {
-    "name": "zenthangplus/HTMLDomParser",
+    "name": "zenthangplus/html-dom-parser",
     "type": "library",
-    "description": "",
+    "description": "A Simple HTML DOM parser written in PHP let you manipulate HTML in a easy way with CSS Selector.",
+    "keywords": ["parser","dom", "html", "selector"],
     "authors": [
         {
             "name": "zenthangplus",
