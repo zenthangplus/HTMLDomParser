@@ -15,6 +15,10 @@ You can install by using [Composer](https://getcomposer.org/) and import to your
 
 ## Install
 
-You can use [Composer](https://getcomposer.org/) to install this package to your project by running ``` composer require zenthangplus/html-dom-parser ```.
+You can use [Composer](https://getcomposer.org/) to install this package to your project by running following command:
+
+```bash
+composer require zenthangplus/html-dom-parser
+```
 
 **The minimum PHP version requirement is 5.6**. If you are using PHP < 5.6, please use [the original version](https://simplehtmldom.sourceforge.io/).
