@@ -22,3 +22,15 @@ composer require zenthangplus/html-dom-parser
 ```
 
 **The minimum PHP version requirement is 5.6**. If you are using PHP < 5.6, please use [the original version](https://simplehtmldom.sourceforge.io/).
+
+## Usage
+
+The following example is a fast and simple usage of the package:
+
+```php
+require "vendor/autoload.php";
+$dom = Dom::create('<div class="container"><div class="anchor"><a href="#">Test</a></div></div>');
+$a = $dom->findOne('.container a');
+echo $a->text();
+// Ouput: Test
+```
