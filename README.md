@@ -13,7 +13,7 @@ You can install by using [Composer](https://getcomposer.org/) and import to your
 - Export elements or a special node to a single file.
 - Supports HTML document with invalid structure.
 
-## Install
+## Installation
 
 You can use [Composer](https://getcomposer.org/) to install this package to your project by running following command:
 
