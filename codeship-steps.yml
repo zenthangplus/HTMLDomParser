@@ -1,19 +1,19 @@
-- name: run_test_in_php56
+- name: Run test in PHP 5.6
   service: php56
   command: ./vendor/bin/phpunit
 
-- name: run_test_in_php70
+- name: Run test in PHP 7.0
   service: php70
   command: ./vendor/bin/phpunit
 
-- name: run_test_in_php71
+- name: Run test in PHP 7.1
   service: php71
   command: ./vendor/bin/phpunit
 
-- name: run_test_in_php72
+- name: Run test in PHP 7.2
   service: php72
   command: ./vendor/bin/phpunit
 
-- name: run_test_in_php73
+- name: Run test in PHP 7.3
   service: php73
   command: ./vendor/bin/phpunit
