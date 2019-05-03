@@ -5,7 +5,6 @@ namespace HTMLDomParser;
 use HTMLDomParser\Contracts\DomContract;
 use HTMLDomParser\Sources\simple_html_dom;
 use HTMLDomParser\Sources\simple_html_dom_node;
-use HTMLDomParser\Traits\DomCreators;
 
 /**
  * Class Dom
@@ -13,8 +12,6 @@ use HTMLDomParser\Traits\DomCreators;
  */
 class Dom extends Node implements DomContract
 {
-    use DomCreators;
-
     /**
      * Simple DOM object
      *

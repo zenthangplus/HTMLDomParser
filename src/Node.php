@@ -7,7 +7,6 @@ use HTMLDomParser\Sources\simple_html_dom_node;
 use HTMLDomParser\Collectors\NodesCollector;
 use HTMLDomParser\Contracts\NodeContract;
 use HTMLDomParser\Contracts\NodesCollectorContract;
-use HTMLDomParser\Traits\NodeCreators;
 
 /**
  * Class Node
@@ -15,8 +14,6 @@ use HTMLDomParser\Traits\NodeCreators;
  */
 class Node implements NodeContract
 {
-    use NodeCreators;
-
     /**
      * Simple dom node object
      *

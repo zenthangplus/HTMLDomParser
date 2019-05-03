@@ -1,24 +1,23 @@
 <?php
 
-namespace HTMLDomParser\Traits;
+namespace HTMLDomParser;
 
 use HTMLDomParser\Contracts\NodeContract;
-use HTMLDomParser\Node;
 
 /**
- * Trait NodeCreators
- * @package HTMLDomParser\Traits
+ * Class NodeFactory
+ * @package HTMLDomParser
  */
-trait NodeCreators
+class NodeFactory
 {
     /**
-     * Create new node from html string
+     * Load node from html string
      *
-     * @see Node::loadString()
+     * @see Node::load()
      * @param string $html
      * @return NodeContract
      */
-    public static function create($html)
+    public static function load($html)
     {
         $node = new Node;
         $node->load($html);
@@ -26,12 +25,13 @@ trait NodeCreators
     }
 
     /**
-     * Create new node from html file
+     * Load node from html file
      *
+     * @see Node::loadFile()
      * @param string $htmlFile
      * @return NodeContract
      */
-    public static function createFromFile($htmlFile)
+    public static function loadFile($htmlFile)
     {
         $node = new Node;
         $node->loadFile($htmlFile);

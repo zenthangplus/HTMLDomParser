@@ -5,7 +5,7 @@ namespace HTMLDomParserTests\Units\Collectors;
 use HTMLDomParser\Collectors\NodesCollector;
 use HTMLDomParser\Contracts\NodeContract;
 use HTMLDomParser\Contracts\NodesCollectorContract;
-use HTMLDomParser\Node;
+use HTMLDomParser\NodeFactory;
 use HTMLDomParser\Sources\simple_html_dom_node;
 use HTMLDomParserTests\Helpers\ReflectionHelper;
 use PHPUnit\Framework\TestCase;
@@ -28,7 +28,7 @@ class NodesCollectorTest extends TestCase
      */
     public function setUp()
     {
-        $root = Node::create('<ul><li>Test 1</li><li>Test 2</li></ul>');
+        $root = NodeFactory::load('<ul><li>Test 1</li><li>Test 2</li></ul>');
         $ul = $root->getFirstChild();
         $this->rawNodes = [
             $ul->getChild(0)->getSimpleNode(),

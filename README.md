@@ -28,11 +28,20 @@ composer require zenthangplus/html-dom-parser
 The following example is a fast and simple usage of the package:
 
 ```php
+<?php
 require "vendor/autoload.php";
-use HTMLDomParser\Dom;
+use HTMLDomParser\DomFactory;
 
-$dom = Dom::create('<div class="container"><div class="anchor"><a href="#">Test</a></div></div>');
+$dom = DomFactory::load('<div class="container"><div class="anchor"><a href="#">Test</a></div></div>');
 $a = $dom->findOne('.container a');
 echo $a->text();
-// Ouput: Test
+// Output: Test
+```
+
+### Create DOM
+```php
+<?php
+require "vendor/autoload.php";
+use HTMLDomParser\DomFactory;
+$dom = DomFactory::loadFile("document.html");
 ```
