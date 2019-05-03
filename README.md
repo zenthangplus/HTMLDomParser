@@ -44,12 +44,12 @@ You can load DOM from `string` or `file`.
 
 ```php
 <?php
-$dom = \HTMLDomParser\DomFactory::load("<div>Test</div>");
+$dom = \HTMLDomParser\DomFactory::load('<div>Test</div>');
 ```
 
 ```php
 <?php
-$dom = \HTMLDomParser\DomFactory::loadFile("document.html");
+$dom = \HTMLDomParser\DomFactory::loadFile('document.html');
 ```
 
 ### NODE
@@ -59,10 +59,34 @@ You can also load any Node (similar to [Dom](#dom)):
 
 ```php
 <?php
-$node = \HTMLDomParser\NodeFactory::load("<div><a href='#'>Test</a></div>");
+$node = \HTMLDomParser\NodeFactory::load('<div><a href="#">Test</a></div>');
 ```
 
 ```php
 <?php
-$node = \HTMLDomParser\NodeFactory::loadFile("document.html");
+$node = \HTMLDomParser\NodeFactory::loadFile('document.html');
+```
+
+### Traversing
+By using selectors like jQuery or CSS, you can traverse easy in the [Dom](#dom) or even in a [Node](#node).
+
+Example:
+```php
+<?php
+$dom = \HTMLDomParser\DomFactory::loadFile('document.html');
+$dom->find('div');
+$dom->find('#container');
+$nodes = $dom->find('#container .content ul>li a.external-link');
+```
+
+Similar to Dom, a Node also traversable:
+```php
+<?php
+$dom = \HTMLDomParser\DomFactory::loadFile('document.html');
+$node = $dom->findOne('#container .content ul>li');
+$anchorNode = $node->findOne('a.external-link');
+
+// Even traverse in a separate Node
+$node = \HTMLDomParser\NodeFactory::load('<ul class="list"><li>Item 1</li><li>Item 2</li></ul>');
+$node->find('ul.list li');
 ```
