@@ -5,17 +5,16 @@ php: 5.6
 services:
   - docker
 
-before_install:
-  - docker pull php:5.6
-  - docker pull php:7.0
-  - docker pull php:7.1
-  - docker pull php:7.2
-  - docker pull php:7.3
-
-script:
-  - composer install
-  - ./phpunit.sh 5.6
-  - ./phpunit.sh 7.0
-  - ./phpunit.sh 7.1
-  - ./phpunit.sh 7.2
-  - ./phpunit.sh 7.3
+jobs:
+  include:
+    - stage: test
+      name: Run test in PHP 5.6
+      script: ./phpunit.sh 5.6
+    - name: Run test in PHP 7.0
+      script: ./phpunit.sh 7.0
+    - name: Run test in PHP 7.1
+        script: ./phpunit.sh 7.1
+    - name: Run test in PHP 7.2
+        script: ./phpunit.sh 7.2
+    - name: Run test in PHP 7.3
+        script: ./phpunit.sh 7.3
