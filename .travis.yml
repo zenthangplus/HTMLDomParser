@@ -13,8 +13,8 @@ jobs:
     - name: Run test in PHP 7.0
       script: ./phpunit.sh 7.0
     - name: Run test in PHP 7.1
-        script: ./phpunit.sh 7.1
+      script: ./phpunit.sh 7.1
     - name: Run test in PHP 7.2
-        script: ./phpunit.sh 7.2
+      script: ./phpunit.sh 7.2
     - name: Run test in PHP 7.3
-        script: ./phpunit.sh 7.3
+      script: ./phpunit.sh 7.3
