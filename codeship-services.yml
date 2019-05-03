@@ -1,4 +1,5 @@
 docker:
-  image: docker
+  build:
+    dockerfile: codeship-dockerfile
   volumes:
     - .:/code
