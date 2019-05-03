@@ -1,5 +1,7 @@
 # HTML DOM parser for PHP
 
+[![Build Status](https://travis-ci.com/zenthangplus/HTMLDomParser.svg?branch=master)](https://travis-ci.com/zenthangplus/HTMLDomParser)
+
 A Simple HTML DOM parser written in PHP let you manipulate HTML in a easy way with selectors just like CSS or jQuery.
 
 > This is modern version of [Simple HTML DOM](https://simplehtmldom.sourceforge.io/). 
