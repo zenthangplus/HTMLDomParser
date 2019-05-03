@@ -20,11 +20,11 @@ cache:
 
 before_install:
   # Load images from cache directory
-  - if [ -f ${CACHE_FILE_PHP56} ]; then gunzip -c ${CACHE_FILE_PHP56} | docker load; fi
-  - if [ -f ${CACHE_FILE_PHP70} ]; then gunzip -c ${CACHE_FILE_PHP70} | docker load; fi
-  - if [ -f ${CACHE_FILE_PHP71} ]; then gunzip -c ${CACHE_FILE_PHP71} | docker load; fi
-  - if [ -f ${CACHE_FILE_PHP72} ]; then gunzip -c ${CACHE_FILE_PHP72} | docker load; fi
-  - if [ -f ${CACHE_FILE_PHP73} ]; then gunzip -c ${CACHE_FILE_PHP73} | docker load; fi
+  - if [ -f ${CACHE_FILE_PHP56} ]; then docker load -i ${CACHE_FILE_PHP56}; fi
+  - if [ -f ${CACHE_FILE_PHP70} ]; then docker load -i ${CACHE_FILE_PHP70}; fi
+  - if [ -f ${CACHE_FILE_PHP71} ]; then docker load -i ${CACHE_FILE_PHP71}; fi
+  - if [ -f ${CACHE_FILE_PHP72} ]; then docker load -i ${CACHE_FILE_PHP72}; fi
+  - if [ -f ${CACHE_FILE_PHP73} ]; then docker load -i ${CACHE_FILE_PHP73}; fi
   # Load and cache docker images into cache directory
   - mkdir -p $CACHE_DIR
   - if [ ! -f ${CACHE_FILE_PHP56} ]; then docker save php:5.6 | gzip > ${CACHE_FILE_PHP56}; fi
