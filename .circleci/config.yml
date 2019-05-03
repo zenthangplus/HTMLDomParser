@@ -1,0 +1,36 @@
+version: 2
+jobs:
+  Test_In_PHP_56:
+    machine: true
+    steps:
+      - checkout
+      - run: ./phpunit.sh 5.6
+  Test_In_PHP_70:
+    machine: true
+    steps:
+      - checkout
+      - run: ./phpunit.sh 7.0
+  Test_In_PHP_71:
+    machine: true
+    steps:
+      - checkout
+      - run: ./phpunit.sh 7.1
+  Test_In_PHP_72:
+    machine: true
+    steps:
+      - checkout
+      - run: ./phpunit.sh 7.2
+  Test_In_PHP_73:
+    machine: true
+    steps:
+      - checkout
+      - run: ./phpunit.sh 7.3
+workflows:
+  version: 2
+  test:
+    jobs:
+      - Test_In_PHP_56
+      - Test_In_PHP_70
+      - Test_In_PHP_71
+      - Test_In_PHP_72
+      - Test_In_PHP_73
