@@ -1,7 +1,0 @@
-FROM docker
-
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-
-WORKDIR /code
-
-RUN composer install

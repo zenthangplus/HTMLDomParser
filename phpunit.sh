@@ -19,4 +19,5 @@ then
 fi
 
 echo "Select PHP $phpVersion to run PHPUnit"
-docker run --rm -v $(pwd):/var/www -w /var/www php:${phpVersion} vendor/bin/phpunit
+docker build -t php${phpVersion} -f ./docker/php${phpVersion}/Dockerfile .
+docker run --rm php${phpVersion} ./vendor/bin/phpunit

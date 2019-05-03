@@ -1,5 +1,20 @@
-docker:
+php56:
   build:
-    dockerfile: codeship-dockerfile
-  volumes:
-    - .:/code
+    dockerfile: ./docker/php5.6/Dockerfile
+    context: .
+php70:
+  build:
+    dockerfile: ./docker/php7.0/Dockerfile
+    context: .
+php71:
+  build:
+    dockerfile: ./docker/php7.1/Dockerfile
+    context: .
+php72:
+  build:
+    dockerfile: ./docker/php7.2/Dockerfile
+    context: .
+php73:
+  build:
+    dockerfile: ./docker/php7.3/Dockerfile
+    context: .
