@@ -38,7 +38,7 @@ echo $a->text();
 ```
 
 ### DOM
-DOM is the root [NODE](#node) of the HTML document.
+Dom is the root [Node](#node) of the HTML document.
 
 You can load DOM from `string` or `file`.
 
@@ -53,9 +53,9 @@ $dom = \HTMLDomParser\DomFactory::loadFile("document.html");
 ```
 
 ### NODE
-NODE is simply an HTML element that described as an object.
+Node is simply an HTML element that described as an object.
 
-You can also load any NODE (similar to DOM):
+You can also load any Node (similar to [Dom](#dom)):
 
 ```php
 <?php
