@@ -24,12 +24,11 @@ composer require zenthangplus/html-dom-parser
 **The minimum PHP version requirement is 5.6**. If you are using PHP < 5.6, please use [the original version](https://simplehtmldom.sourceforge.io/).
 
 ## Usage
-
-The following example is a fast and simple usage of the package:
+The following example is the simple usage of this package:
 
 ```php
 <?php
-require "vendor/autoload.php";
+require "./vendor/autoload.php";
 use HTMLDomParser\DomFactory;
 
 $dom = DomFactory::load('<div class="container"><div class="anchor"><a href="#">Test</a></div></div>');
@@ -38,10 +37,32 @@ echo $a->text();
 // Output: Test
 ```
 
-### Create DOM
+### DOM
+DOM is the root [NODE](#node) of the HTML document.
+
+You can load DOM from `string` or `file`.
+
 ```php
 <?php
-require "vendor/autoload.php";
-use HTMLDomParser\DomFactory;
-$dom = DomFactory::loadFile("document.html");
+$dom = \HTMLDomParser\DomFactory::load("<div>Test</div>");
+```
+
+```php
+<?php
+$dom = \HTMLDomParser\DomFactory::loadFile("document.html");
+```
+
+### NODE
+NODE is simply an HTML element that described as an object.
+
+You can also load any NODE (similar to DOM):
+
+```php
+<?php
+$node = \HTMLDomParser\NodeFactory::load("<div><a href='#'>Test</a></div>");
+```
+
+```php
+<?php
+$node = \HTMLDomParser\NodeFactory::loadFile("document.html");
 ```
