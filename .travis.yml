@@ -5,33 +5,12 @@ php: 5.6
 services:
   - docker
 
-env:
-  global:
-    - CACHE_DIR=$HOME/.cache/docker
-    - CACHE_FILE_PHP56=$CACHE_DIR/php5.6.tar.gz
-    - CACHE_FILE_PHP70=$CACHE_DIR/php7.0.tar.gz
-    - CACHE_FILE_PHP71=$CACHE_DIR/php7.1.tar.gz
-    - CACHE_FILE_PHP72=$CACHE_DIR/php7.2.tar.gz
-    - CACHE_FILE_PHP73=$CACHE_DIR/php7.3.tar.gz
-
-cache:
-  directories:
-    - $CACHE_DIR
-
 before_install:
-  # Load images from cache directory
-  - if [ -f ${CACHE_FILE_PHP56} ]; then docker load -i ${CACHE_FILE_PHP56}; fi
-  - if [ -f ${CACHE_FILE_PHP70} ]; then docker load -i ${CACHE_FILE_PHP70}; fi
-  - if [ -f ${CACHE_FILE_PHP71} ]; then docker load -i ${CACHE_FILE_PHP71}; fi
-  - if [ -f ${CACHE_FILE_PHP72} ]; then docker load -i ${CACHE_FILE_PHP72}; fi
-  - if [ -f ${CACHE_FILE_PHP73} ]; then docker load -i ${CACHE_FILE_PHP73}; fi
-  # Load and cache docker images into cache directory
-  - mkdir -p $CACHE_DIR
-  - if [ ! -f ${CACHE_FILE_PHP56} ]; then docker pull php:5.6; docker save php:5.6 | gzip > ${CACHE_FILE_PHP56}; fi
-  - if [ ! -f ${CACHE_FILE_PHP70} ]; then docker pull php:7.0; docker save php:7.0 | gzip > ${CACHE_FILE_PHP70}; fi
-  - if [ ! -f ${CACHE_FILE_PHP71} ]; then docker pull php:7.1; docker save php:7.1 | gzip > ${CACHE_FILE_PHP71}; fi
-  - if [ ! -f ${CACHE_FILE_PHP72} ]; then docker pull php:7.2; docker save php:7.2 | gzip > ${CACHE_FILE_PHP72}; fi
-  - if [ ! -f ${CACHE_FILE_PHP73} ]; then docker pull php:7.3; docker save php:7.3 | gzip > ${CACHE_FILE_PHP73}; fi
+  - docker pull php:5.6
+  - docker pull php:7.0
+  - docker pull php:7.1
+  - docker pull php:7.2
+  - docker pull php:7.3
 
 script:
   - composer install
