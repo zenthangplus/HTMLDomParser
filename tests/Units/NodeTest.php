@@ -403,6 +403,32 @@ class NodeTest extends TestCase
     }
 
     /**
+     * Test find one element with invalid index
+     *
+     * @covers \HTMLDomParser\Node::findOne
+     */
+    public function testFindOneWithInvalidIndex()
+    {
+        $root = new Node('<div id="wrapper"><ul class="list"><li>Item 1</li><li>Item 2</li></ul></div>');
+        $element = $root->findOne('#wrapper .list li', 2);
+        $this->assertNull($element);
+    }
+
+    /**
+     * Test find one element with inverse index
+     *
+     * @covers \HTMLDomParser\Node::findOne
+     */
+    public function testFindOneWithInverseIndex()
+    {
+        $root = new Node('<div id="wrapper"><ul class="list"><li>Item 1</li><li>Item 2</li></ul></div>');
+        $element = $root->findOne('#wrapper .list li', -1);
+        $this->assertInstanceOf(NodeContract::class, $element);
+        $this->assertEquals('Item 2', $element->text());
+    }
+
+
+    /**
      * Test get element by ID
      *
      * @covers \HTMLDomParser\Node::getElementById
@@ -450,6 +476,31 @@ class NodeTest extends TestCase
         $root = new Node('<div class="container"><ul><li>Item 1</li><li id="item-2">Item 2</li></ul></div>');
         $element = $root->getElementByTagName('a');
         $this->assertNull($element);
+    }
+
+    /**
+     * Test get a element by tag name with invalid index
+     *
+     * @covers \HTMLDomParser\Node::getElementByTagName
+     */
+    public function testGetElementByTagNameWithInvalidIndex()
+    {
+        $root = new Node('<div class="container"><ul><li>Item 1</li><li id="item-2">Item 2</li></ul></div>');
+        $element = $root->getElementByTagName('li', 2);
+        $this->assertNull($element);
+    }
+
+    /**
+     * Test get a element by tag name with inverse index
+     *
+     * @covers \HTMLDomParser\Node::getElementByTagName
+     */
+    public function testGetElementByTagNameWithInverseIndex()
+    {
+        $root = new Node('<div class="container"><ul><li>Item 1</li><li id="item-2">Item 2</li></ul></div>');
+        $element = $root->getElementByTagName('li', -2);
+        $this->assertInstanceOf(NodeContract::class, $element);
+        $this->assertEquals('Item 1', $element->text());
     }
 
     /**

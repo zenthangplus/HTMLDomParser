@@ -202,12 +202,13 @@ class Node implements NodeContract
      * if current node contains multiple elements with same selector, return the first one
      *
      * @param string $selector
+     * @param int $index
      * @param bool $lowercase
      * @return NodeContract|null
      */
-    public function findOne($selector, $lowercase = false)
+    public function findOne($selector, $index = 0, $lowercase = false)
     {
-        return self::nullOrNode($this->node->find($selector, 0, $lowercase));
+        return self::nullOrNode($this->node->find($selector, $index, $lowercase));
     }
 
     /**
@@ -226,11 +227,12 @@ class Node implements NodeContract
      * if current node has multiple tags with same name, return the first one
      *
      * @param string $tag
+     * @param int $index
      * @return NodeContract|null
      */
-    public function getElementByTagName($tag)
+    public function getElementByTagName($tag, $index = 0)
     {
-        return $this->findOne($tag);
+        return $this->findOne($tag, $index);
     }
 
     /**
