@@ -134,9 +134,10 @@ interface NodeContract
      *
      * @see \HTMLDomParser\Sources\simple_html_dom_node::getElementByTagName()
      * @param string $tag
+     * @param int $index
      * @return NodeContract|null
      */
-    public function getElementByTagName($tag);
+    public function getElementByTagName($tag, $index = 0);
 
     /**
      * Get all elements by tag name
