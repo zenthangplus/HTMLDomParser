@@ -114,10 +114,11 @@ interface NodeContract
      *
      * @see \HTMLDomParser\Sources\simple_html_dom_node::find()
      * @param string $selector
+     * @param int $index
      * @param bool $lowercase
      * @return NodeContract|null
      */
-    public function findOne($selector, $lowercase = false);
+    public function findOne($selector, $index = 0, $lowercase = false);
 
     /**
      * Get element by it's ID
