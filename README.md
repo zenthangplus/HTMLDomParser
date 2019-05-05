@@ -32,10 +32,7 @@ The following example is the simple usage of this package:
 
 ```php
 <?php
-require "./vendor/autoload.php";
-use HTMLDomParser\DomFactory;
-
-$dom = DomFactory::load('<div class="container"><div class="anchor"><a href="#">Test</a></div></div>');
+$dom = \HTMLDomParser\DomFactory::load('<div class="container"><div class="anchor"><a href="#">Test</a></div></div>');
 $a = $dom->findOne('.container a');
 echo $a->text();
 // Output: Test
@@ -71,7 +68,7 @@ $node = \HTMLDomParser\NodeFactory::load('<div><a href="#">Test</a></div>');
 $node = \HTMLDomParser\NodeFactory::loadFile('document.html');
 ```
 
-### Traversing
+### Traversing the DOM
 By using selectors like jQuery or CSS, you can traverse easy in the [Dom](#dom) or even in a [Node](#node).
 
 Example:
@@ -80,7 +77,8 @@ Example:
 $dom = \HTMLDomParser\DomFactory::loadFile('document.html');
 $dom->find('div');
 $dom->find('#container');
-$nodes = $dom->find('#container .content ul>li a.external-link');
+$dom->find('#container .content ul>li a.external-link');
+$dom->find('#container .content ul>li a[data-id=link-1]');
 ```
 
 Similar to Dom, a Node also traversable:
@@ -94,3 +92,32 @@ $anchorNode = $node->findOne('a.external-link');
 $node = \HTMLDomParser\NodeFactory::load('<ul class="list"><li>Item 1</li><li>Item 2</li></ul>');
 $node->find('ul.list li');
 ```
+
+##### List of supported selectors:
+
+| Selector example | Description |
+| --- | --- |
+| `div` | Find elements with the `div` tag |
+| `#container` | Find elements with the `container` id |
+| `.wrapper` | Find elements with the `wrapper` class |
+| `[data-id]` | Find elements with the `data-id` attribute |
+| `[data-id=12]` | Find elements with the attribute `data-id=12` |
+| `a[data-id=12]` | Find anchor tags with the attribute `data-id=12` |
+| `*[class]` | Find all elements with `class` attribute |
+| `a, img` | Find all anchors and images |
+| `a[title], img[title]` | Find all anchors and images with the `title` attribute |
+| `#container ul` | By using `space` between selectors, you can find nested elements |
+| `#container>ul` | By using `>` between selectors, you can find the closest children |
+| `#container, #side` | By using `,` between selectors, you can find elements by multiple selectors in one query |
+| `#container div.content ul>li, #side div[role=main] ul li` | You can combine selectors in one query |
+
+##### List of function you can use with above selectors:
+
+- [Find elements](docs/traverse.md#find-elements)
+- [Find one element](docs/traverse.md#find-one-element)
+
+##### Special functions:
+
+- [Get a element by ID](docs/traverse.md#get-element-by-id)
+- [Get elements by tag name](docs/traverse.md#get-elements-by-tag-name)
+- [Get a element by tag name](docs/traverse.md#get-a-element-by-tag-name)
