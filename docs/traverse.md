@@ -44,7 +44,7 @@ By using selectors like jQuery or CSS, you can traverse easy in the Dom or even 
 The `find()` method returns a collection of an element's child elements by [selectors](#list-of-supported-selectors).
 
 ```php
-function find(string $selector, int $index): []NodeContract
+function find(string $selector): []NodeContract
 ```
 
 Example:
