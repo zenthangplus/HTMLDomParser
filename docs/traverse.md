@@ -21,14 +21,14 @@ By using selectors like jQuery or CSS, you can traverse easy in the Dom or even 
 
 ##### List of function you can use with above selectors:
 
-- [Find elements](#find-elements)
-- [Find one element](#find-one-element)
+- [`find()` Find elements](#find-elements)
+- [`findOne()` Find one element](#find-one-element)
 
 ##### Specific find functions:
 
-- [Get a element by ID](#get-element-by-id)
-- [Get a element by tag name](#get-a-element-by-tag-name)
-- [Get elements by tag name](#get-elements-by-tag-name)
+- [`getElementById()` Get a element by ID](#get-element-by-id)
+- [`getElementByTagName()` Get a element by tag name](#get-a-element-by-tag-name)
+- [`getElementsByTagName()` Get elements by tag name](#get-elements-by-tag-name)
 
 ##### Traverse the DOM tree
 
@@ -127,7 +127,7 @@ foreach ($paragraphs as $paragraph) {
 The `getChild()` method returns the Nth child element.
 
 ```php
-function getChild($idx): NodeContract|null
+function getChild(int $idx): NodeContract|null
 ```
 
 ## Get all children
@@ -169,5 +169,5 @@ function getPrevSibling(): NodeContract|null
 The `findAncestorTag()` method returns the first ancestor tag.
 
 ```php
-function findAncestorTag(): NodeContract|null
+function findAncestorTag(string $tag): NodeContract|null
 ```
