@@ -113,11 +113,21 @@ $node->find('ul.list li');
 
 ##### List of function you can use with above selectors:
 
-- [Find elements](docs/traverse.md#find-elements)
-- [Find one element](docs/traverse.md#find-one-element)
+- [`find()` Find elements](docs/traverse.md#find-elements)
+- [`findOne()` Find one element](docs/traverse.md#find-one-element)
 
-##### Special functions:
+##### Specific find functions:
 
-- [Get a element by ID](docs/traverse.md#get-element-by-id)
-- [Get elements by tag name](docs/traverse.md#get-elements-by-tag-name)
-- [Get a element by tag name](docs/traverse.md#get-a-element-by-tag-name)
+- [`getElementById()` Get a element by ID](docs/traverse.md#get-element-by-id)
+- [`getElementByTagName()` Get a element by tag name](docs/traverse.md#get-a-element-by-tag-name)
+- [`getElementsByTagName()` Get elements by tag name](docs/traverse.md#get-elements-by-tag-name)
+
+##### Traverse the DOM tree
+
+- [`getChild()` Get child element](docs/traverse.md#get-child-element)
+- [`getChildren()` Get child element](docs/traverse.md#get-all-children)
+- [`getFirstChild()` Get first child](docs/traverse.md#get-first-child)
+- [`getLastChild()` Get last child](docs/traverse.md#get-last-child)
+- [`getNextSibling()` Get next sibling](docs/traverse.md#get-next-sibling)
+- [`getPrevSibling()` Get previous sibling](docs/traverse.md#get-previous-sibling)
+- [`findAncestorTag()` Find ancestor tag](docs/traverse.md#find-ancestor-tag)

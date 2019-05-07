@@ -24,17 +24,27 @@ By using selectors like jQuery or CSS, you can traverse easy in the Dom or even 
 - [Find elements](#find-elements)
 - [Find one element](#find-one-element)
 
-##### Special functions:
+##### Specific find functions:
 
 - [Get a element by ID](#get-element-by-id)
-- [Get elements by tag name](#get-elements-by-tag-name)
 - [Get a element by tag name](#get-a-element-by-tag-name)
+- [Get elements by tag name](#get-elements-by-tag-name)
+
+##### Traverse the DOM tree
+
+- [`getChild()` Get child element](#get-child-element)
+- [`getChildren()` Get child element](#get-all-children)
+- [`getFirstChild()` Get first child](#get-first-child)
+- [`getLastChild()` Get last child](#get-last-child)
+- [`getNextSibling()` Get next sibling](#get-next-sibling)
+- [`getPrevSibling()` Get previous sibling](#get-previous-sibling)
+- [`findAncestorTag()` Find ancestor tag](#find-ancestor-tag)
 
 ## Find elements
 The `find()` method returns a collection of an element's child elements by [selectors](#list-of-supported-selectors).
 
 ```php
-find(string $selector, int $index): []NodeContract
+function find(string $selector, int $index): []NodeContract
 ```
 
 Example:
@@ -51,7 +61,7 @@ foreach ($elements as $element) {
 The `findOne()` method returns only 1 child element by selectors and an index.
 
 ```php
-findOne(string $selector, int $index): NodeContract
+function findOne(string $selector, int $index): NodeContract|null
 ```
 
 Example:
@@ -68,7 +78,7 @@ $anchor = $dom->findOne('#container a', -1);// Reverse search, return the last a
 The `getElementById()` method returns an element's child element by ID.
 
 ```php
-getElementById(string $id): NodeContract
+function getElementById(string $id): NodeContract|null
 ```
 
 Example:
@@ -79,11 +89,28 @@ $container = $dom->getElementById('container');
 echo $container->innerHtml();
 ```
 
+## Get a element by tag name
+The `getElementByTagName()` method returns only 1 child element with the specified tag name and an index.
+
+```php
+function getElementByTagName(string $tagName): NodeContract
+```
+
+Example:
+```php
+<?php
+$dom = \HTMLDomParser\DomFactory::loadFile("document.html");
+$paragraph = $dom->getElementByTagName('p');// Return the first paragraph (with index=0)
+$paragraph = $dom->getElementByTagName('p', 1);// Return the paragraph with index=1
+$paragraph = $dom->getElementByTagName('p', 2);// Return the paragraph with index=2
+$paragraph = $dom->getElementByTagName('p', -1);// Reverse search, return the last paragraph
+```
+
 ## Get elements by tag name
 The `getElementsByTagName()` method returns a collection of an element's child elements with the specified tag name.
 
 ```php
-getElementsByTagName(string $tagName): []NodeContract
+function getElementsByTagName(string $tagName): []NodeContract
 ```
 
 Example:
@@ -96,19 +123,51 @@ foreach ($paragraphs as $paragraph) {
 }
 ```
 
-## Get a element by tag name
-The `getElementByTagName()` method returns only 1 child element with the specified tag name and an index.
+## Get child element
+The `getChild()` method returns the Nth child element.
 
 ```php
-getElementByTagName(string $tagName): NodeContract
+function getChild($idx): NodeContract|null
 ```
 
-Example:
+## Get all children
+The `getChildren()` method returns a list of children elements.
+
 ```php
-<?php
-$dom = \HTMLDomParser\DomFactory::loadFile("document.html");
-$paragraph = $dom->getElementByTagName('p');// Return the first paragraph (with index=0)
-$paragraph = $dom->getElementByTagName('p', 1);// Return the paragraph with index=1
-$paragraph = $dom->getElementByTagName('p', 2);// Return the paragraph with index=2
-$paragraph = $dom->getElementByTagName('p', -1);// Reverse search, return the last paragraph
+function getChildren(): []NodeContract
+```
+
+## Get first child
+The `getFirstChild()` method returns the first child element.
+
+```php
+function getFirstChild(): NodeContract|null
+```
+
+## Get last child
+The `getLastChild()` method returns the last child element.
+
+```php
+function getLastChild(): NodeContract|null
+```
+
+## Get next sibling
+The `getNextSibling()` method returns the next sibling element.
+
+```php
+function getNextSibling(): NodeContract|null
+```
+
+## Get previous sibling
+The `getPrevSibling()` method returns the previous sibling element.
+
+```php
+function getPrevSibling(): NodeContract|null
+```
+
+## Find ancestor tag 
+The `findAncestorTag()` method returns the first ancestor tag.
+
+```php
+function findAncestorTag(): NodeContract|null
 ```
