@@ -22,7 +22,7 @@ You can access to the Node's data such as: contents, attributes by using bellow 
 ##### Traversing the Node tree
 
 - [`getChild()` Get child element](#get-child-element)
-- [`getChildren()` Get child element](#get-all-children)
+- [`getChildren()` Get all children](#get-all-children)
 - [`getFirstChild()` Get first child](#get-first-child)
 - [`getLastChild()` Get last child](#get-last-child)
 - [`getNextSibling()` Get next sibling](#get-next-sibling)

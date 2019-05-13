@@ -33,7 +33,7 @@ By using selectors like jQuery or CSS, you can traverse easy in the Dom or even 
 ##### Traversing the NODE tree
 
 - [`getChild()` Get child element](accessing.md#get-child-element)
-- [`getChildren()` Get child element](accessing.md#get-all-children)
+- [`getChildren()` Get all children](accessing.md#get-all-children)
 - [`getFirstChild()` Get first child](accessing.md#get-first-child)
 - [`getLastChild()` Get last child](accessing.md#get-last-child)
 - [`getNextSibling()` Get next sibling](accessing.md#get-next-sibling)

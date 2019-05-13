@@ -143,7 +143,7 @@ $node->find('ul.list li');
 ##### Traversing the Node tree
 
 - [`getChild()` Get child element](docs/accessing.md#get-child-element)
-- [`getChildren()` Get child element](docs/accessing.md#get-all-children)
+- [`getChildren()` Get all children](docs/accessing.md#get-all-children)
 - [`getFirstChild()` Get first child](docs/accessing.md#get-first-child)
 - [`getLastChild()` Get last child](docs/accessing.md#get-last-child)
 - [`getNextSibling()` Get next sibling](docs/accessing.md#get-next-sibling)
