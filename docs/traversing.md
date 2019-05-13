@@ -30,15 +30,15 @@ By using selectors like jQuery or CSS, you can traverse easy in the Dom or even 
 - [`getElementByTagName()` Get a element by tag name](#get-a-element-by-tag-name)
 - [`getElementsByTagName()` Get elements by tag name](#get-elements-by-tag-name)
 
-##### Traverse the DOM tree
+##### Traversing the NODE tree
 
-- [`getChild()` Get child element](#get-child-element)
-- [`getChildren()` Get child element](#get-all-children)
-- [`getFirstChild()` Get first child](#get-first-child)
-- [`getLastChild()` Get last child](#get-last-child)
-- [`getNextSibling()` Get next sibling](#get-next-sibling)
-- [`getPrevSibling()` Get previous sibling](#get-previous-sibling)
-- [`findAncestorTag()` Find ancestor tag](#find-ancestor-tag)
+- [`getChild()` Get child element](accessing.md#get-child-element)
+- [`getChildren()` Get child element](accessing.md#get-all-children)
+- [`getFirstChild()` Get first child](accessing.md#get-first-child)
+- [`getLastChild()` Get last child](accessing.md#get-last-child)
+- [`getNextSibling()` Get next sibling](accessing.md#get-next-sibling)
+- [`getPrevSibling()` Get previous sibling](accessing.md#get-previous-sibling)
+- [`findAncestorTag()` Find ancestor tag](accessing.md#find-ancestor-tag)
 
 ## Find elements
 The `find()` method returns a collection of an element's child elements by [selectors](#list-of-supported-selectors).
@@ -121,53 +121,4 @@ $paragraphs = $dom->getElementsByTagName('p');
 foreach ($paragraphs as $paragraph) {
     echo $paragraph->text();
 }
-```
-
-## Get child element
-The `getChild()` method returns the Nth child element.
-
-```php
-function getChild(int $idx): NodeContract|null
-```
-
-## Get all children
-The `getChildren()` method returns a list of children elements.
-
-```php
-function getChildren(): []NodeContract
-```
-
-## Get first child
-The `getFirstChild()` method returns the first child element.
-
-```php
-function getFirstChild(): NodeContract|null
-```
-
-## Get last child
-The `getLastChild()` method returns the last child element.
-
-```php
-function getLastChild(): NodeContract|null
-```
-
-## Get next sibling
-The `getNextSibling()` method returns the next sibling element.
-
-```php
-function getNextSibling(): NodeContract|null
-```
-
-## Get previous sibling
-The `getPrevSibling()` method returns the previous sibling element.
-
-```php
-function getPrevSibling(): NodeContract|null
-```
-
-## Find ancestor tag 
-The `findAncestorTag()` method returns the first ancestor tag.
-
-```php
-function findAncestorTag(string $tag): NodeContract|null
 ```

@@ -113,21 +113,39 @@ $node->find('ul.list li');
 
 ##### List of function you can use with above selectors:
 
-- [`find()` Find elements](docs/traverse.md#find-elements)
-- [`findOne()` Find one element](docs/traverse.md#find-one-element)
+- [`find()` Find elements](docs/traversing.md#find-elements)
+- [`findOne()` Find one element](docs/traversing.md#find-one-element)
 
 ##### Specific find functions:
 
-- [`getElementById()` Get a element by ID](docs/traverse.md#get-element-by-id)
-- [`getElementByTagName()` Get a element by tag name](docs/traverse.md#get-a-element-by-tag-name)
-- [`getElementsByTagName()` Get elements by tag name](docs/traverse.md#get-elements-by-tag-name)
+- [`getElementById()` Get a element by ID](docs/traversing.md#get-element-by-id)
+- [`getElementByTagName()` Get a element by tag name](docs/traversing.md#get-a-element-by-tag-name)
+- [`getElementsByTagName()` Get elements by tag name](docs/traversing.md#get-elements-by-tag-name)
 
-##### Traverse the DOM tree
+##### Accessing the node's data:
 
-- [`getChild()` Get child element](docs/traverse.md#get-child-element)
-- [`getChildren()` Get child element](docs/traverse.md#get-all-children)
-- [`getFirstChild()` Get first child](docs/traverse.md#get-first-child)
-- [`getLastChild()` Get last child](docs/traverse.md#get-last-child)
-- [`getNextSibling()` Get next sibling](docs/traverse.md#get-next-sibling)
-- [`getPrevSibling()` Get previous sibling](docs/traverse.md#get-previous-sibling)
-- [`findAncestorTag()` Find ancestor tag](docs/traverse.md#find-ancestor-tag)
+- [`text()` Get the text contents](docs/accessing.md#get-the-text-contents)
+- [`getAttributes()` Get attributes](docs/accessing.md#get-all-attributes)
+- [`getAttribute()` Get a attribute](docs/accessing.md#get-a-attribute)
+- [`hasAttribute()` Check element has a attribute](docs/accessing.md#check-element-has-a-attribute)
+- [`hasChild()` Check element has child](docs/accessing.md#check-element-has-child)
+- [`innerHtml()` Get inner HTML](docs/accessing.md#get-inner-html)
+- [`outerHtml()` Get outer HTML](docs/accessing.md#get-outer-html)
+- [`innerXml()` Get inner XML](docs/accessing.md#get-inner-xml)
+- [Get node's HTML](docs/accessing.md#get-nodes-html)
+
+##### Modifying the Node's data
+- [`setAttribute()` Set a attribute](docs/accessing.md#set-a-attribute)
+- [`removeAttribute()` Remove a attribute](docs/accessing.md#remove-a-attribute)
+- [`appendChild()` Append child](docs/accessing.md#append-child)
+- [`save()` Save node](docs/accessing.md#save-dom-or-even-a-node)
+
+##### Traversing the Node tree
+
+- [`getChild()` Get child element](docs/accessing.md#get-child-element)
+- [`getChildren()` Get child element](docs/accessing.md#get-all-children)
+- [`getFirstChild()` Get first child](docs/accessing.md#get-first-child)
+- [`getLastChild()` Get last child](docs/accessing.md#get-last-child)
+- [`getNextSibling()` Get next sibling](docs/accessing.md#get-next-sibling)
+- [`getPrevSibling()` Get previous sibling](docs/accessing.md#get-previous-sibling)
+- [`findAncestorTag()` Find ancestor tag](docs/accessing.md#find-ancestor-tag)
