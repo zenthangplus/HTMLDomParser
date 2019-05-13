@@ -59,7 +59,7 @@ function getAttribute(string $name): string
 The `hasAttribute()` method will check current element has a attribute or not?
 
 ```php
-function hasAttribute(string $name): boolean
+function hasAttribute(string $name): bool
 ```
 
 ### Check element has child
@@ -67,7 +67,7 @@ function hasAttribute(string $name): boolean
 The `hasChild()` method will check current element has a child or not?
 
 ```php
-function hasChild(): boolean
+function hasChild(): bool
 ```
 
 ### Get inner HTML
