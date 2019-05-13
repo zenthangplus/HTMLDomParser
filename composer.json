@@ -3,6 +3,7 @@
     "type": "library",
     "description": "A Simple HTML DOM parser written in PHP let you manipulate HTML in a easy way with CSS Selector.",
     "keywords": ["parser","dom", "html", "selector"],
+    "license": "MIT",
     "authors": [
         {
             "name": "zenthangplus",
