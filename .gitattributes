@@ -3,8 +3,8 @@
 .gitignore export-ignore
 .dockerignore export-ignore
 .travis.yml export-ignore
-.codeship-services.yml export-ignore
-.codeship-steps.yml export-ignore
+codeship-services.yml export-ignore
+codeship-steps.yml export-ignore
 /.circleci export-ignore
 /docker export-ignore
 phpunit.xml export-ignore
