@@ -138,7 +138,7 @@ $node->find('ul.list li');
 - [`setAttribute()` Set a attribute](docs/accessing.md#set-a-attribute)
 - [`removeAttribute()` Remove a attribute](docs/accessing.md#remove-a-attribute)
 - [`appendChild()` Append child](docs/accessing.md#append-child)
-- [`save()` Save node](docs/accessing.md#save-dom-or-even-a-node)
+- [`save()` Save DOM or even a node](docs/accessing.md#save-dom-or-even-a-node)
 
 ##### Traversing the Node tree
 
